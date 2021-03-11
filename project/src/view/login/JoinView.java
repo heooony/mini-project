@@ -8,7 +8,7 @@ public class JoinView {
 	public void joinStart() {
 		while(true) {
 			System.out.println("--------------------------------------------------------------------");
-			System.out.println("                            JOIN US");
+			System.out.println("                             JOIN US");
 			System.out.println("--------------------------------------------------------------------");
 			System.out.println("        1. 고객 정보 입력  5. 반려견 정보 입력    0. 메인으로 가기");
 			System.out.println("--------------------------------------------------------------------");
