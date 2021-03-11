@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import dto.Customer;
 import dto.Price;
 
 public class SuccessView {
@@ -14,5 +15,13 @@ public class SuccessView {
 			System.out.println(price.get(i));
 		}
 		System.out.println("==============================");
+	}
+
+	public static void printMessage(String message) {
+		
+		
+	}
+	public static void confirmId(Customer customer) {
+		System.out.println(customer);
 	}
 }

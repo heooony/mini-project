@@ -8,9 +8,9 @@ public class Customer {
 	private String password; //비밀번호
 	private String cstmName; //회원이름
 	private String tel;      //연락처
-	private int mileage;     //누적마일리지
+	private int mileage;     //마일리지
 	
-	public Customer() {}
+	public Customer(String id2, String cstmName2) {}
 
 	// 회원가입시 회원아이디, 비밀번호, 이름, 연락처만 받는 생성자
 	public Customer(String id, String password, String cstmName, String tel) {
@@ -27,6 +27,10 @@ public class Customer {
 		this.cstmName = cstmName;
 		this.tel = tel;
 		this.mileage = mileage;
+	}
+
+	public Customer(String id, String password, String cstmName) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getCardno() {

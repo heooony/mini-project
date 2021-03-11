@@ -60,7 +60,8 @@ public class JoinView {
 				int pno = Integer.parseInt(sc.nextLine());
 				System.out.print("몸무게 : ");
 				double pweight = sc.nextDouble(); 
-				System.out.println("견종 선택 : ");
+				System.out.print("견종 선택 : ");
+				sc.nextLine();
 				String pbreed = sc.nextLine();
 				System.out.println("반려견 정보 등록 완료.");
 				break;
