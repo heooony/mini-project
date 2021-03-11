@@ -1,4 +1,4 @@
-package service;
+package service.reservation;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,9 +11,16 @@ public class ReservationServiceImpl {
 	private static ReservationServiceImpl instance;
 	public ReservationDAO reservationDAO = new ReservationDAO();
 
-	private ReservationServiceImpl() {
-	}
+	private ReservationServiceImpl() {}
 
+	public String checkType(List<Price> list, String type) {
+		String value = null;
+		for(int i = 0; i < list.size(); i++)
+			if(type.equals(list.get(i).getGrmType()))
+				value = list.get(i).getGrmType();
+		return value;
+	}
+	
 	public static ReservationServiceImpl getInstance() {
 		instance = new ReservationServiceImpl();
 		return instance;
@@ -41,7 +48,7 @@ public class ReservationServiceImpl {
 		List<Price> list = new ArrayList<Price>();
 		list = reservationDAO.getPrice();
 		if (list.size() == 0)
-			throw new SQLException("����ǥ�� �ҷ����µ� ������ �߻��߽��ϴ�.");
+			throw new SQLException("게시판이 존재하지 않습니다.");
 		return list;
 	}
 }
