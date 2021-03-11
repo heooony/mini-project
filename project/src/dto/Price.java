@@ -1,10 +1,12 @@
 package dto;
+
+
 public class Price {
 
-	private String grmType; //¹Ì¿ëÅ¸ÀÔ
-	private int bCost;      //ÀÏ¹İºñ¿ë
-	private int spcCost;    //Æ¯¼öºñ¿ë
-	private int grmTimes;    //¼Ò¿ä½Ã°£
+	String grmType; //ë¯¸ìš©íƒ€ì…
+	int bCost;      //ì¼ë°˜ë¹„ìš©
+	int spcCost;    //íŠ¹ìˆ˜ë¹„ìš©
+	int grmTimes;    //ì†Œìš”ì‹œê°„
 
 	public Price() {}
 

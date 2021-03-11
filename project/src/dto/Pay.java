@@ -1,10 +1,12 @@
 package dto;
+
+
 public class Pay {
 
-	private int payno;      //°áÁ¦¹øÈ£
-	private int cardno;     //Ä«µå¹øÈ£
-	private int cost;       //°áÁ¦¿ä±İ
-	private String payDay;  //°áÁ¦ÀÏ
+	private int payno;      //ê²°ì œë²ˆí˜¸
+	private int cardno;     //ì¹´ë“œë²ˆí˜¸
+	private int cost;       //ê²°ì œìš”ê¸ˆ
+	private String payDay;  //ê²°ì œì¼
 	
 	public Pay() {}
 

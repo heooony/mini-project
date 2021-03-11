@@ -1,16 +1,18 @@
 package dto;
+
+
 public class Reservation {
 
-	private int cardno;          //Ä«µå¹øÈ£
-	private int resvno;          //¿¹¾à¹øÈ£
-	private String resvTime;     //¿¹¾à½Ã°£
-	private String resvState;    //¿¹¾à»óÅÂ
-	private String resvContent;  //¿¹¾à³»¿ë
+	private int cardno;          //ì¹´ë“œë²ˆí˜¸
+	private int resvno;          //ì˜ˆì•½ë²ˆí˜¸
+	private String resvTime;     //ì˜ˆì•½ì‹œê°„
+	private String resvState;    //ì˜ˆì•½ìƒíƒœ
+	private String resvContent;  //ì˜ˆì•½ë‚´ìš©
 	
 	public Reservation() {}
 
 	
-	// ¿¹¾à½Ã Ä«µå¹øÈ£, ¿¹¾à½Ã°£, ¿¹¾à³»¿ë¸¸ ¹Ş´Â »ı¼ºÀÚ
+	// ì˜ˆì•½ì‹œ ì¹´ë“œë²ˆí˜¸, ì˜ˆì•½ì‹œê°„, ì˜ˆì•½ë‚´ìš©ë§Œ ë°›ëŠ” ìƒì„±ì
 	public Reservation(int cardno, String resvTime, String resvContent) {
 		super();
 		this.cardno = cardno;

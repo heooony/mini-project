@@ -1,10 +1,12 @@
 package dto;
+
+
 public class Counseling {
 
-	private int cardno;        //Ä«µå¹øÈ£
-	private int csno;          //±Û¹øÈ£
-	private String csContents; //»ó´ã³»¿ë
-	private String csDate;     //»ó´ã½ÅÃ»³¯Â¥
+	private int cardno;        //ì¹´ë“œë²ˆí˜¸
+	private int csno;          //ê¸€ë²ˆí˜¸
+	private String csContents; //ìƒë‹´ë‚´ìš©
+	private String csDate;     //ìƒë‹´ì‹ ì²­ë‚ ì§œ
 
 	public Counseling() {}
 

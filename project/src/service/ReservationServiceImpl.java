@@ -10,26 +10,27 @@ import dto.Price;
 public class ReservationServiceImpl {
 	private static ReservationServiceImpl instance;
 	public ReservationDAO reservationDAO = new ReservationDAO();
-	
-	private ReservationServiceImpl() {}
-	
+
+	private ReservationServiceImpl() {
+	}
+
 	public static ReservationServiceImpl getInstance() {
 		instance = new ReservationServiceImpl();
 		return instance;
 	}
-	
+
 	public List<Integer> getReservationState(String calendar) {
 		List<Integer> list = reservationDAO.getCalendar(calendar);
 		List<Integer> timeList = new ArrayList<Integer>();
-		for(int i = 11; i < 22; i++)
+		for (int i = 11; i < 22; i++)
 			timeList.add(i);
-		while(list.size() > 0) {
+		while (list.size() > 0) {
 			timeList.remove(list.get(0));
 			list.remove(0);
 		}
 		int time = 3;
-		for(int i = 0; i <= timeList.size() - time; i++) {
-			if(timeList.get(i) + time - 1 == timeList.get(i + time - 1)) {
+		for (int i = 0; i <= timeList.size() - time; i++) {
+			if (timeList.get(i) + time - 1 == timeList.get(i + time - 1)) {
 				list.add(timeList.get(i));
 			}
 		}
@@ -39,7 +40,8 @@ public class ReservationServiceImpl {
 	public List<Price> getPrice() throws SQLException {
 		List<Price> list = new ArrayList<Price>();
 		list = reservationDAO.getPrice();
-		if(list.size() == 0) throw new SQLException("°¡°ÝÇ¥¸¦ ºÒ·¯¿À´Âµ¥ ¹®Á¦°¡ ¹ß»ýÇß½À´Ï´Ù.");
+		if (list.size() == 0)
+			throw new SQLException("ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 		return list;
 	}
 }

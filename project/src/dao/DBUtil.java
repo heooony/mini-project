@@ -6,51 +6,52 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBUtil implements DBProperties{
+public class DBUtil implements DBProperties {
 	/**
-	 * ·Îµå
-	 * */
+	 * ï¿½Îµï¿½
+	 */
 	static {
 		try {
 			Class.forName(DBProperties.DRIVER_NAME);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	/**
-	 * @throws SQLException 
-	 * ¿¬°á
-	 * */
+	 * @throws SQLException ï¿½ï¿½ï¿½ï¿½
+	 */
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(DBProperties.URL, DBProperties.USER_NAME, DBProperties.USER_PASS);
 	}
-	
-	
+
 	/**
-	 * ´Ý±â(DMLÀÎ °æ¿ì)
-	 * */
+	 * ï¿½Ý±ï¿½(DMLï¿½ï¿½ ï¿½ï¿½ï¿½)
+	 */
 	public static void dbClose(Connection con, Statement st) {
 		try {
-			if(st != null) st.close();
-			if(con != null) con.close();
-		} catch(SQLException e) {
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * ´Ý±â(SELECTÀÎ °æ¿ì)
-	 * */
+	 * ï¿½Ý±ï¿½(SELECTï¿½ï¿½ ï¿½ï¿½ï¿½)
+	 */
 	public static void dbClose(Connection con, Statement st, ResultSet rs) {
 		try {
-			if(rs != null) rs.close();
+			if (rs != null)
+				rs.close();
 			dbClose(con, st);
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void main(String[] args) throws SQLException {
 		DBUtil.getConnection();
 	}

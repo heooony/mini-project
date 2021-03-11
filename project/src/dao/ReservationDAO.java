@@ -24,8 +24,9 @@ public class ReservationDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, calendar);
 			rs = ps.executeQuery();
-			while(rs.next()) list.add(Integer.parseInt(rs.getString(1)));
-		} catch(SQLException e) {
+			while (rs.next())
+				list.add(Integer.parseInt(rs.getString(1)));
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
@@ -45,29 +46,30 @@ public class ReservationDAO {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			weight = getWeight(con);
-			int plusPrice = (weight-2) * 10000;
-			while(rs.next()) {
-				Price price = new Price(rs.getString(1), rs.getInt(2) + plusPrice, rs.getInt(3) + plusPrice, rs.getInt(4));
+			int plusPrice = (weight - 2) * 10000;
+			while (rs.next()) {
+				Price price = new Price(rs.getString(1), rs.getInt(2) + plusPrice, rs.getInt(3) + plusPrice,
+						rs.getInt(4));
 				list.add(price);
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, st, rs);
 		}
 		return list;
 	}
-	
-	private int getWeight(Connection con) throws SQLException{
+
+	private int getWeight(Connection con) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		int weight = 0;
 		String sql = "SELECT P_WEIGHT FROM PUPPY WHERE P_NAME = ?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "½îÀÌ");
+			ps.setString(1, "ï¿½ï¿½ï¿½ï¿½");
 			rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				weight = rs.getInt(1);
 			}
 		} finally {

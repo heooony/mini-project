@@ -1,16 +1,18 @@
 package dto;
+
+
 public class Customer {
 
-	private int cardno;      //Ä«µå¹øÈ£
-	private String id;       //È¸¿øID
-	private String password; //ºñ¹Ğ¹øÈ£
-	private String cstmName; //È¸¿øÀÌ¸§
-	private String tel;      //¿¬¶ôÃ³
-	private int mileage;     //´©Àû¸¶ÀÏ¸®Áö
+	private int cardno;      //ì¹´ë“œë²ˆí˜¸
+	private String id;       //íšŒì›ID
+	private String password; //ë¹„ë°€ë²ˆí˜¸
+	private String cstmName; //íšŒì›ì´ë¦„
+	private String tel;      //ì—°ë½ì²˜
+	private int mileage;     //ëˆ„ì ë§ˆì¼ë¦¬ì§€
 	
 	public Customer() {}
 
-	// È¸¿ø°¡ÀÔ½Ã È¸¿ø¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£, ÀÌ¸§, ¿¬¶ôÃ³¸¸ ¹Ş´Â »ı¼ºÀÚ
+	// íšŒì›ê°€ì…ì‹œ íšŒì›ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸, ì´ë¦„, ì—°ë½ì²˜ë§Œ ë°›ëŠ” ìƒì„±ì
 	public Customer(String id, String password, String cstmName, String tel) {
 		this.id = id;
 		this.password = password;

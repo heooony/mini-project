@@ -6,11 +6,11 @@ import dto.Price;
 
 public class SuccessView {
 	public static void printPrice(List<Price> price) {
-		System.out.println("=============°¡°ÝÇ¥=============");
-		System.out.println("°¡°ÝÀº ¹Ý·Á°ßÀÇ ¸ö¹«°Ô¿¡ ¸Â°Ô ÀÚµ¿ »êÁ¤µË´Ï´Ù.");
-		System.out.println(" | Á¾·ù | ÀÏ¹Ý °¡°Ý | Æ¯¼ö°ß °¡°Ý | ¼Ò¿ä ½Ã°£");
+		System.out.println("=============ï¿½ï¿½ï¿½ï¿½Ç¥=============");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Â°ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ë´Ï´ï¿½.");
+		System.out.println(" | ï¿½ï¿½ï¿½ï¿½ | ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ | Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ | ï¿½Ò¿ï¿½ ï¿½Ã°ï¿½");
 		System.out.println();
-		for(int i = 0; i < price.size(); i++) {
+		for (int i = 0; i < price.size(); i++) {
 			System.out.println(price.get(i));
 		}
 		System.out.println("==============================");

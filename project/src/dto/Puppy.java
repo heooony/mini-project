@@ -1,15 +1,17 @@
 package dto;
+
+
 public class Puppy {
 
-	private int pno;       //¹İ·Á°ßµî·Ï¹øÈ£
-	private int cardno;    //Ä«µå¹øÈ£
-	private String pname;  //¹İ·Á°ßÀÌ¸§
-	private int pweight;   //¸ö¹«°Ô
-	private String pbreed; //°ßÁ¾
+	private int pno;       //ë°˜ë ¤ê²¬ë“±ë¡ë²ˆí˜¸
+	private int cardno;    //ì¹´ë“œë²ˆí˜¸
+	private String pname;  //ë°˜ë ¤ê²¬ì´ë¦„
+	private double pweight;   //ëª¸ë¬´ê²Œ
+	private String pbreed; //ê²¬ì¢…
 	
 	public Puppy() {}
 
-	public Puppy(int pno, int cardno, String pname, int pweight, String pbreed) {
+	public Puppy(int pno, int cardno, String pname, double pweight, String pbreed) {
 		this.pno = pno;
 		this.cardno = cardno;
 		this.pname = pname;
@@ -41,11 +43,11 @@ public class Puppy {
 		this.pname = pname;
 	}
 
-	public int getPweight() {
+	public double getPweight() {
 		return pweight;
 	}
 
-	public void setPweight(int pweight) {
+	public void setPweight(double pweight) {
 		this.pweight = pweight;
 	}
 

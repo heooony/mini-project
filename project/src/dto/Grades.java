@@ -1,10 +1,12 @@
 package dto;
+
+
 public class Grades {
 
-	private String grade;        //È¸¿øµî±Ş
-	private double mileByGrade;  //µî±Şº°¸¶ÀÏ¸®Áö
-	private int crtMile;         //½Â±Ş±âÁØ¸¶ÀÏ¸®Áö
-	private String benefit;      //½Â±ŞÇıÅÃ
+	private String grade;        //íšŒì›ë“±ê¸‰
+	private double mileByGrade;  //ë“±ê¸‰ë³„ë§ˆì¼ë¦¬ì§€
+	private int crtMile;         //ìŠ¹ê¸‰ê¸°ì¤€ë§ˆì¼ë¦¬ì§€
+	private String benefit;      //ìŠ¹ê¸‰í˜œíƒ
 	
 	public Grades() {}
 
