@@ -11,7 +11,6 @@ public class Customer {
 	private int mileage;     //마일리지
 	private Puppy puppy;
 	
-	
 
 	// 회원가입시 회원아이디, 비밀번호, 이름, 연락처만 받는 생성자
 	public Customer(String id, String password, String cstmName, String tel) {
