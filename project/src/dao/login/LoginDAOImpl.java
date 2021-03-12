@@ -22,17 +22,15 @@ public class LoginDAOImpl implements LoginDAO {
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
 			
 			ps.setString(1, id);
 			ps.setString(2, password);
-			
+			rs = ps.executeQuery();
 			if(rs.next()) {
-				String cstmName=rs.getString("csrm_name");
+				String cstmName=rs.getString("cstm_name");
 				
 				customer = new Customer(id, password, cstmName);
 			}
-			
 			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);

@@ -8,6 +8,7 @@ import service.login.LoginService;
 import service.login.LoginServiceImpl;
 import view.FailView;
 import view.SuccessView;
+import view.menu.SubView;
 
 public class LoginController {
 
@@ -18,16 +19,24 @@ public class LoginController {
 	 */
 	
 		
-	public void checkLogin(String id, String password) {
+	public Customer checkLogin(String id, String password) {
 		try {
-		Customer customer=service.checkLogin(id,password);	
-			SuccessView.printMessage("입력하신 아이디와 패스워스 성공적으로 확인되었습니다.");
+			Customer customer=service.checkLogin(id,password);	
+			
+			SuccessView.printMessage("원하시는 서비스를 선택해주세요 ^^");
+			System.out.println();
+			SubView.printSubView();
+			return customer;
+			
 		}catch(SQLException e) {
 			FailView.printMessage(e.getMessage());
+			
+	
+		
 		}
+		return null;
+	
 	}
-	
-	
 	
 	
 }

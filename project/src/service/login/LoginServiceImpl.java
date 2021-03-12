@@ -14,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Customer checkLogin(String id, String password) throws SQLException{
 		Customer customer=logindao.checkLogin(id, password);
-		if(customer == null) throw new SQLException("등록되지않은 "+id+"입니다.");
+		if(customer == null) throw new SQLException(id+"는 등록되지않은 정보입니다. 다시 시도해주세요^^");
 		return customer;
 		
 	}

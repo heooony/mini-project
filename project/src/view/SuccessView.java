@@ -19,12 +19,16 @@ public class SuccessView {
 
 
 
-	public static void confirmId(Customer customer) {
-		System.out.println(customer);
-
-	}
+	
 	public static void printMessage(String message) {
 		System.out.println(message);
 
+	}
+
+	
+	
+	
+	public static void printLoginSuccess() {
+		
 	}
 }

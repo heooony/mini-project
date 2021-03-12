@@ -29,7 +29,7 @@ public class Customer {
 		this.mileage = mileage;
 	}
 
-	//로그인시 아이디, 비밀번호, 이름 받는 생성
+	//로그인시 아이디, 비밀번호, 고객이름, 반려견이름 받는 생성
 	public Customer(String id, String password, String cstmName) {
 		this.id = id;
 		this.password = password;
