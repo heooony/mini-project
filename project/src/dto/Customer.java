@@ -9,6 +9,7 @@ public class Customer {
 	private String cstmName; //회원이름
 	private String tel;      //연락처
 	private int mileage;     //마일리지
+	private Puppy puppy;
 	
 	
 
@@ -20,13 +21,15 @@ public class Customer {
 		this.tel = tel;
 	}
 
-	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage) {
+	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage, Puppy puppy) {
+		super();
 		this.cardno = cardno;
 		this.id = id;
 		this.password = password;
 		this.cstmName = cstmName;
 		this.tel = tel;
 		this.mileage = mileage;
+		this.puppy = puppy;
 	}
 
 	//로그인시 아이디, 비밀번호, 이름 받는 생성
@@ -85,6 +88,14 @@ public class Customer {
 		this.mileage = mileage;
 	}
 	
+	public Puppy getPuppy() {
+		return puppy;
+	}
+
+	public void setPuppy(Puppy puppy) {
+		this.puppy = puppy;
+	}
+
 	@Override
 	public String toString() {
 		return " | "+cardno+" | "+id+" | "+password+" | "+cstmName+" | "+tel+" | "+mileage;

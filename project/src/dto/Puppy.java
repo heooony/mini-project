@@ -3,29 +3,16 @@ package dto;
 
 public class Puppy {
 
-	
-	private int cardno;    //카드번호
 	private String pname;  //반려견이름
 	private double pweight;   //몸무게
 	private String pbreed; //견종
 	
 	public Puppy() {}
 
-	public Puppy( int cardno, String pname, double pweight, String pbreed) {
-		
-		this.cardno = cardno;
+	public Puppy(String pname, double pweight, String pbreed) {
 		this.pname = pname;
 		this.pweight = pweight;
 		this.pbreed = pbreed;
-	}
-
-
-	public int getCardno() {
-		return cardno;
-	}
-
-	public void setCardno(int cardno) {
-		this.cardno = cardno;
 	}
 
 	public String getPname() {
@@ -54,7 +41,7 @@ public class Puppy {
 	
 	@Override
 	public String toString() {
-		return " | "+cardno+" | "+pname+" | "+pweight+" | "+pbreed;
+		return " | "+pname+" | "+pweight+" | "+pbreed;
 	}
 	
 }

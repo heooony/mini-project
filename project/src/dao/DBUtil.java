@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil implements DBProperties {
-	/**
-	 * �ε�
-	 */
+
 	static {
 		try {
 			Class.forName(DBProperties.DRIVER_NAME);
@@ -18,16 +16,10 @@ public class DBUtil implements DBProperties {
 		}
 	}
 
-	/**
-	 * @throws SQLException ����
-	 */
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(DBProperties.URL, DBProperties.USER_NAME, DBProperties.USER_PASS);
 	}
 
-	/**
-	 * �ݱ�(DML�� ���)
-	 */
 	public static void dbClose(Connection con, Statement st) {
 		try {
 			if (st != null)
@@ -39,9 +31,6 @@ public class DBUtil implements DBProperties {
 		}
 	}
 
-	/**
-	 * �ݱ�(SELECT�� ���)
-	 */
 	public static void dbClose(Connection con, Statement st, ResultSet rs) {
 		try {
 			if (rs != null)

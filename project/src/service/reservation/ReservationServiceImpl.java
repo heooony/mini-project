@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ReservationDAO;
+import dto.Customer;
 import dto.Price;
+import dto.Reservation;
 
 public class ReservationServiceImpl {
 	private static ReservationServiceImpl instance;
@@ -44,11 +46,20 @@ public class ReservationServiceImpl {
 		return list;
 	}
 
-	public List<Price> getPrice() throws SQLException {
+	public List<Price> getPrice(int weight) throws SQLException {
 		List<Price> list = new ArrayList<Price>();
-		list = reservationDAO.getPrice();
+		list = reservationDAO.getPrice(weight);
 		if (list.size() == 0)
 			throw new SQLException("게시판이 존재하지 않습니다.");
 		return list;
+	}
+
+	public Customer getCustomer() throws SQLException {
+		Customer customer = reservationDAO.getCustomer();
+		return customer;
+	}
+
+	public void setReservation(Reservation reservation) throws SQLException {
+		reservationDAO.setReservation(reservation);
 	}
 }
