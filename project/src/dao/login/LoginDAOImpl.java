@@ -1,4 +1,4 @@
-package dao;
+package dao.login;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,33 +7,42 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.DBUtil;
 import dto.Customer;
 
 public class LoginDAOImpl implements LoginDAO {
-	
-	//select CSTM_NAME from customer where id=? and password=?;
+	//select cstm_name from customer where id = 'soyoung'  and password = 'dd';
 	@Override
-	public List<Customer> checkPw(String id, String pw) throws SQLException {
+	public Customer checkLogin (String id, String password)throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		List<Customer> list = new ArrayList<Customer>();
-		String sql = "select CSTM_NAME from customer where id=? and password=?";
+		String sql = "select cstm_name from customer where id = ?  and password = ?";
+		Customer customer = null;
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
+			
 			ps.setString(1, id);
-			ps.setString(2, pw);
+			ps.setString(2, password);
 			
 			if(rs.next()) {
-				String cstmName = rs.getString(1);
-				Customer customer = new Customer(id, pw, cstmName);
+				String cstmName=rs.getString("csrm_name");
+				
+				customer = new Customer(id, password, cstmName);
 			}
+			
+			
 		}finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return list;
+		
+		return customer;
+		
 	}
+	
+
+
 
 }

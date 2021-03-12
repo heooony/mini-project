@@ -2,7 +2,7 @@ package view.login;
 
 import java.util.Scanner;
 
-import controller.LoginController;
+import controller.login.LoginController;
 
 public class LoginView {
 	public LoginView() {}
@@ -24,8 +24,8 @@ public class LoginView {
 				System.out.println("ID  : ");
 				String id = sc.nextLine();
 				System.out.println("PW  : ");
-				String pw = sc.nextLine();
-				controller.checkPw(id, pw);
+				String password = sc.nextLine();
+				controller.checkLogin(id, password);
 				sc.nextLine();
 			case 0 :
 				System.out.println("메인으로 이동합니다.");
