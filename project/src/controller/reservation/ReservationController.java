@@ -14,12 +14,13 @@ import view.SuccessView;
 public class ReservationController {
 	private ReservationServiceImpl service = ReservationServiceImpl.getInstance();
 	
-	public boolean checkType(List<Price> list, String type) {
-		if(service.checkType(list, type) != null) return true;
+	public int checkType(List<Price> list, String type, String breed) {
+		int price = service.checkType(list, type, breed);
+		if(service.checkType(list, type, breed) != 0) return price;
 		else {
 			FailView.printMessage("해당 항목이 존재하지 않습니다.");
 			FailView.printMessage("다시 선택해주세요.");
-			return false;
+			return 0;
 		}
 	}
 	

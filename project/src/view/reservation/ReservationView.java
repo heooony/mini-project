@@ -19,6 +19,7 @@ public class ReservationView {
 		String type = null;
 		String cal = null;
 		int time = 0;
+		int price = 0;
 		
 		while(true) {
 			list = controller.getPrice((int)customer.getPuppy().getPweight());
@@ -27,7 +28,8 @@ public class ReservationView {
 			System.out.print("입력 > ");
 			
 			type = sc.next();
-			if(controller.checkType(list, type)) break;
+			price = controller.checkType(list, type, customer.getPuppy().getPbreed());
+			if(price != 0) break;
 			else continue;
 		}
 		

@@ -18,8 +18,7 @@ public class ReservationDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "SELECT TO_CHAR(RESV_TIME, 'HH24') FROM RESERVATION "
-				+ "WHERE TO_CHAR(RESV_TIME, 'YYYYMMDD') = ? ORDER BY RESV_TIME ASC";
+		String sql = "SELECT TO_CHAR(RESV_TIME, 'HH24'), GRM_TIMES FROM RESERVATION JOIN PRICE USING(GRM_TYPE)";
 		List<Integer> list = new ArrayList<Integer>();
 		try {
 			con = DBUtil.getConnection();
@@ -65,7 +64,7 @@ public class ReservationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Customer customer = null;
-		String sql = "SELECT CRD_NO, CSTM_NAME, MILEAGE, P_NAME, P_WEIGHT, P_BREED FROM CUSTOMER";
+		String sql = "SELECT CRD_NO, CSTM_NAME, MILEAGE,  P_NAME, P_WEIGHT, CASE WHEN P_BREED LIKE '%일%' THEN '일반견' WHEN P_BREED LIKE '%특%' THEN '특수견' END FROM CUSTOMER";
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);

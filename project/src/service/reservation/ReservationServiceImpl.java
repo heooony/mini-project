@@ -15,12 +15,15 @@ public class ReservationServiceImpl {
 
 	private ReservationServiceImpl() {}
 
-	public String checkType(List<Price> list, String type) {
-		String value = null;
+	public int checkType(List<Price> list, String type, String breed) {
+		int price = 0;
 		for(int i = 0; i < list.size(); i++)
 			if(type.equals(list.get(i).getGrmType()))
-				value = list.get(i).getGrmType();
-		return value;
+				if(breed.equals("일반견"))
+					price = list.get(i).getbCost();
+				else if (breed.equals("특수견"))
+					price = list.get(i).getSpcCost();
+		return price;
 	}
 	
 	public static ReservationServiceImpl getInstance() {
