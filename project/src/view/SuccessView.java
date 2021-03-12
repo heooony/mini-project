@@ -16,18 +16,15 @@ public class SuccessView {
 		}
 		System.out.println("==============================");
 	}
-<<<<<<< HEAD
 
-	public static void printMessage(String message) {
-		
-		
-	}
+
+
 	public static void confirmId(Customer customer) {
 		System.out.println(customer);
-=======
-	
+
+	}
 	public static void printMessage(String message) {
 		System.out.println(message);
->>>>>>> branch 'master' of https://github.com/oueya1479/mini-project.git
+
 	}
 }
