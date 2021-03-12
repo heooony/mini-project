@@ -64,10 +64,10 @@ public class ReservationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		int weight = 0;
-		String sql = "SELECT P_WEIGHT FROM PUPPY WHERE P_NAME = ?";
+		String sql = "SELECT P_WEIGHT FROM CUSTOMER WHERE P_NAME = ?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "����");
+			ps.setString(1, "쏘이");
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				weight = rs.getInt(1);

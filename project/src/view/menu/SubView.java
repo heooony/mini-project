@@ -34,4 +34,7 @@ public class SubView {
 			}
 		}
 	}
+	public static void main(String[] args) {
+		SubView.printSubView();
+	}
 }

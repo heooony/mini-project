@@ -26,6 +26,7 @@ public class LoginView {
 				System.out.println("PW  : ");
 				String pw = sc.nextLine();
 				controller.checkPw(id, pw);
+				sc.nextLine();
 			case 0 :
 				System.out.println("메인으로 이동합니다.");
 				return;
