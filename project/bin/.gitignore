@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-/view/
 /dto/
-/service/
 /dao/
 /controller/
-=======
 /service/
-/controller/
 /view/
-/dao/
->>>>>>> branch 'master' of https://github.com/oueya1479/mini-project.git

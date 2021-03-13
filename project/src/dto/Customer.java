@@ -9,6 +9,7 @@ public class Customer {
 	private String cstmName; //회원이름
 	private String tel;      //연락처
 	private int mileage;     //마일리지
+<<<<<<< HEAD
 	private String pname;  //반려견이름
 	private Double pweight;   //몸무게
 	private String pbreed; //견종
@@ -18,6 +19,20 @@ public class Customer {
 
 	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage, String pname,
 			Double pweight, String pbreed) {
+=======
+	private Puppy puppy;
+	
+
+	// 회원가입시 회원아이디, 비밀번호, 이름, 연락처만 받는 생성자
+	public Customer(String id, String password, String cstmName, String tel) {
+		this.id = id;
+		this.password = password;
+		this.cstmName = cstmName;
+		this.tel = tel;
+	}
+
+	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage, Puppy puppy) {
+>>>>>>> 4a9a50dc5064d430575d01764c18cbeb748d5d68
 		super();
 		this.cardno = cardno;
 		this.id = id;
@@ -25,9 +40,13 @@ public class Customer {
 		this.cstmName = cstmName;
 		this.tel = tel;
 		this.mileage = mileage;
+<<<<<<< HEAD
 		this.pname = pname;
 		this.pweight = pweight;
 		this.pbreed = pbreed;
+=======
+		this.puppy = puppy;
+>>>>>>> 4a9a50dc5064d430575d01764c18cbeb748d5d68
 	}
 
 
@@ -109,6 +128,7 @@ public class Customer {
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
+<<<<<<< HEAD
 
 
 
@@ -148,6 +168,17 @@ public class Customer {
 
 
 
+=======
+	
+	public Puppy getPuppy() {
+		return puppy;
+	}
+
+	public void setPuppy(Puppy puppy) {
+		this.puppy = puppy;
+	}
+
+>>>>>>> 4a9a50dc5064d430575d01764c18cbeb748d5d68
 	@Override
 	public String toString() {
 		return "-------------------------------고객정보--------------------------------------"

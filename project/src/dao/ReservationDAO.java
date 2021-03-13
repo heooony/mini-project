@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.Customer;
 import dto.Price;
+import dto.Puppy;
 import dto.Reservation;
 
 public class ReservationDAO {
@@ -16,8 +18,7 @@ public class ReservationDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "SELECT TO_CHAR(RESV_TIME, 'HH24') FROM RESERVATION "
-				+ "WHERE TO_CHAR(RESV_TIME, 'YYYY-MM-DD') = ? ORDER BY RESV_TIME ASC";
+		String sql = "SELECT TO_CHAR(RESV_TIME, 'HH24'), GRM_TIMES FROM RESERVATION JOIN PRICE USING(GRM_TYPE)";
 		List<Integer> list = new ArrayList<Integer>();
 		try {
 			con = DBUtil.getConnection();
@@ -34,18 +35,16 @@ public class ReservationDAO {
 		return list;
 	}
 
-	public List<Price> getPrice() {
+	public List<Price> getPrice(int weight) {
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
 		List<Price> list = new ArrayList<Price>();
 		String sql = "SELECT * FROM PRICE";
-		int weight = 0;
 		try {
 			con = DBUtil.getConnection();
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-			weight = getWeight(con);
 			int plusPrice = (weight - 2) * 10000;
 			while (rs.next()) {
 				Price price = new Price(rs.getString(1), rs.getInt(2) + plusPrice, rs.getInt(3) + plusPrice,
@@ -60,21 +59,41 @@ public class ReservationDAO {
 		return list;
 	}
 
-	private int getWeight(Connection con) throws SQLException {
+	public Customer getCustomer() throws SQLException {
+		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		int weight = 0;
-		String sql = "SELECT P_WEIGHT FROM CUSTOMER WHERE P_NAME = ?";
+		Customer customer = null;
+		String sql = "SELECT CRD_NO, CSTM_NAME, MILEAGE,  P_NAME, P_WEIGHT, CASE WHEN P_BREED LIKE '%일%' THEN '일반견' WHEN P_BREED LIKE '%특%' THEN '특수견' END FROM CUSTOMER";
 		try {
+			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setString(1, "쏘이");
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				weight = rs.getInt(1);
+				customer = new Customer(rs.getInt(1), null, null, rs.getString(2), null, rs.getInt(3),
+						new Puppy(rs.getString(4), rs.getDouble(5), rs.getString(6)));
 			}
 		} finally {
-			DBUtil.dbClose(null, ps, rs);
+			DBUtil.dbClose(con, ps, rs);
 		}
-		return weight;
+		return customer;
+	}
+	
+	public void setReservation(Reservation reservation) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "INSERT INTO RESERVATION VALUES (RESERVATION_RESVNO_SEQ.NEXTVAL, ?, TO_DATE(?, 'YYYYMMDDHH'), ?, ?)";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, reservation.getCustomer().getCardno());
+			ps.setString(2, reservation.getResvTime());
+			ps.setString(3, reservation.getResvState());
+			ps.setString(4, reservation.getResvContent());
+			ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
 	}
 }
