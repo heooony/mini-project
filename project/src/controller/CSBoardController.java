@@ -80,7 +80,7 @@ public class CSBoardController {
 	public static void boardInsert(CSBoardDTO board) {
 		try {
 			boardService.boardInsert(board);
-			SuccessView.messagePrint(" 등록되었습니다.");
+			SuccessView.printMessage(" 등록되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
@@ -92,7 +92,7 @@ public class CSBoardController {
 	public static void boardUpdate(CSBoardDTO board) {
 		try {
 			boardService.boardUpdate(board);
-			SuccessView.messagePrint(" 내용이 수정되었습니다.");
+			SuccessView.printMessage(" 내용이 수정되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
@@ -104,7 +104,7 @@ public class CSBoardController {
 	public static void boardDelete(int boardNo) {
 		try {
 			boardService.boardDelete(boardNo);
-			SuccessView.messagePrint(" 삭제되었습니다.");
+			SuccessView.printMessage(" 삭제되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
@@ -116,7 +116,7 @@ public class CSBoardController {
 	public static void insertReply(CSReplyDTO reply){
 		try {
 			boardService.insertReply(reply);
-			SuccessView.messagePrint(" 등록되었습니다.");
+			SuccessView.printMessage(" 등록되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
@@ -128,7 +128,7 @@ public class CSBoardController {
 	public static void replyUpdateByNo(CSReplyDTO reply) {
 		try {
 			boardService.replyUpdateByNo(reply);
-			SuccessView.messagePrint(" 내용이 수정되었습니다.");
+			SuccessView.printMessage(" 내용이 수정되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
@@ -140,7 +140,7 @@ public class CSBoardController {
 	public static void replyDeleteByNo(int replyNo) {
 		try {
 			boardService.replyDeleteByNo(replyNo);
-			SuccessView.messagePrint(" 삭제되었습니다.");
+			SuccessView.printMessage(" 삭제되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}

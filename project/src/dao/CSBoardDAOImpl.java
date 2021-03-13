@@ -10,7 +10,6 @@ import java.util.Properties;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
-import util.DBUtil;
 
 public class CSBoardDAOImpl implements CSBoardDAO {
 	
