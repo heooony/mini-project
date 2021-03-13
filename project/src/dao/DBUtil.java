@@ -1,15 +1,23 @@
 package dao;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class DBUtil implements DBProperties {
 
+	private static Properties profile = new Properties();
+	public static Properties getProfile() {
+		return profile;
+	}
+
 	static {
 		try {
+			profile.load(new FileInputStream("resources/csboard.properties"));
 			Class.forName(DBProperties.DRIVER_NAME);
 		} catch (Exception e) {
 			e.printStackTrace();

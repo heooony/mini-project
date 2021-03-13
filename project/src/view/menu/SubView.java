@@ -27,7 +27,7 @@ public class SubView {
 				case 2: ReservationView.checkReservation(); break;
 				case 3: UserView.userManagement(); break;
 				case 4: MembershipView.membership(); break;
-				case 5: ConsultationView.consultation(); break;
+				case 5: ConsultationView.csBoardSelect(); break;
 				case 6: break;
 				case 0: 
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
