@@ -2,7 +2,7 @@ package view.menu;
 
 import java.util.Scanner;
 
-import view.login.JoinView;
+import view.join.JoinView;
 import view.login.LoginView;
 
 public class MainView {
@@ -22,7 +22,7 @@ public class MainView {
 		switch(menuChoice) {
 		case 1 : login.loginstart(); break;
 		case 2 : join.joinStart(); break;
-		case 3 :
+		case 3 : login.findInform(); break;
 		case 0 : 
 			System.out.println("프로그램 종료.");
 			System.exit(0);
