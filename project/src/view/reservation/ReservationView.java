@@ -13,6 +13,7 @@ public class ReservationView {
 	
 	public static void reservation() {
 		Customer customer = controller.getCustomer();
+		Reservation reservation = null;
 		List<Price> list = null;
 		List<Integer> timeList = null;
 		Scanner sc = new Scanner(System.in);
@@ -22,13 +23,13 @@ public class ReservationView {
 		int price = 0;
 		
 		while(true) {
-			list = controller.getPrice((int)customer.getPuppy().getPweight());
+			list = controller.getPrice(3);
 			System.out.println("원하시는 종류를 선택하세요.");
 			System.out.println("가격은 반려견의 몸무게에 맞게 자동 산정됩니다.");
 			System.out.print("입력 > ");
 			
 			type = sc.next();
-			price = controller.checkType(list, type, customer.getPuppy().getPbreed());
+			price = controller.checkType(list, type, customer.getPbreed());
 			if(price != 0) break;
 			else continue;
 		}
@@ -39,7 +40,10 @@ public class ReservationView {
 			cal = sc.next();
 			
 			timeList = controller.getReservationState(cal);
-			if(timeList == null) continue;
+			if(timeList == null || timeList.size() == 0) {
+				System.out.println("해당 날짜에 예약할 수 있는 시간이 없습니다. 다시 선택해주세요.");
+				continue;	
+			}
 			
 			System.out.print(cal + "날짜에 예약 가능한 시간은");
 			System.out.println(timeList + "시 입니다.");
@@ -61,21 +65,26 @@ public class ReservationView {
 		}
 		System.out.println(customer.getCstmName() + "고객님");
 		System.out.println(cal + " / " + time  + "시에 " + type + " 예약하셨습니다.");
-		System.out.println("총 금액은 120,000원 입니다.");
+		System.out.println("총 금액은 " + price +"원 입니다.");
 		System.out.println("예약하시겠습니까? (Y/N)");
-		String answer = sc.next();
-		if(answer.equals("Y") || answer.equals("y")) {
-			//reservation 함
-			Reservation reservation = new Reservation(customer, customer.getCardno(), cal+time, "대기", type + "/120000");
-			controller.setReservation(reservation);
-		} else if(answer.equals("N") || answer.equals("n")) {
-			//reservation 안함
-		} else {
-			System.out.println("잘못 입력하셨습니다. 예약을 취소합니다.");
+		while(true) {
+			String answer = sc.next();
+			if(answer.equals("Y") || answer.equals("y")) {
+				reservation = new Reservation(customer, 0, cal + time, "대기", type, price);
+				controller.setReservation(reservation);
+				System.out.println("예약을 성공하셨습니다.");
+				break;
+			} else if(answer.equals("N") || answer.equals("n")) {
+				System.out.println("예약을 취소합니다.");
+				continue;
+			} else {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
 		}
 	}
 	
 	public static void checkReservation() {
-		
+		controller.checkReservation();
 	}
 }

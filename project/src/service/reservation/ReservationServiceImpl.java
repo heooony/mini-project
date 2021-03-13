@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.ReservationDAO;
+import dao.reservation.ReservationDAO;
 import dto.Customer;
 import dto.Price;
 import dto.Reservation;
@@ -40,13 +40,7 @@ public class ReservationServiceImpl {
 			timeList.remove(list.get(0));
 			list.remove(0);
 		}
-		int time = 3;
-		for (int i = 0; i <= timeList.size() - time; i++) {
-			if (timeList.get(i) + time - 1 == timeList.get(i + time - 1)) {
-				list.add(timeList.get(i));
-			}
-		}
-		return list;
+		return timeList;
 	}
 
 	public List<Price> getPrice(int weight) throws SQLException {
@@ -64,5 +58,11 @@ public class ReservationServiceImpl {
 
 	public void setReservation(Reservation reservation) throws SQLException {
 		reservationDAO.setReservation(reservation);
+	}
+
+	public List<Reservation> checkReservation() throws SQLException{
+		List<Reservation> list = reservationDAO.checkReservation();
+		if(list == null || list.size() == 0) throw new SQLException("예약 상태가 존재하지 않습니다.");
+		return list;
 	}
 }

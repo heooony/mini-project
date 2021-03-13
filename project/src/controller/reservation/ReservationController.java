@@ -64,4 +64,13 @@ public class ReservationController {
 			System.out.println("예약에 실패하셨습니다.");
 		}
 	}
+
+	public void checkReservation() {
+		try {
+			List<Reservation> list = service.checkReservation();
+			SuccessView.printReservation(list);
+		} catch(SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
 }

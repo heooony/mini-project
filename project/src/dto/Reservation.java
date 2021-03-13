@@ -7,16 +7,19 @@ public class Reservation {
 	private int resvno;          //예약번호
 	private String resvTime;     //예약시간
 	private String resvState;    //예약상태
-	private String resvContent;  //예약내용
+	private String grmType;
+	private int pay;
 	
 	public Reservation() {}
 
-	public Reservation(Customer customer, int resvNo, String resvTime, String resvState, String resvContent) {
+	public Reservation(Customer customer, int resvno, String resvTime, String resvState, String grmType, int pay) {
+		super();
 		this.customer = customer;
-		this.resvno = resvNo;
+		this.resvno = resvno;
 		this.resvTime = resvTime;
 		this.resvState = resvState;
-		this.resvContent = resvContent;
+		this.grmType = grmType;
+		this.pay = pay;
 	}
 
 	public Customer getCustomer() {
@@ -35,14 +38,6 @@ public class Reservation {
 		this.resvno = resvno;
 	}
 
-	public int getResvNo() {
-		return resvno;
-	}
-
-	public void setResvNo(int resvNo) {
-		this.resvno = resvNo;
-	}
-
 	public String getResvTime() {
 		return resvTime;
 	}
@@ -59,17 +54,25 @@ public class Reservation {
 		this.resvState = resvState;
 	}
 
-	public String getResvContent() {
-		return resvContent;
+	public String getGrmType() {
+		return grmType;
 	}
 
-	public void setResvContent(String resvContent) {
-		this.resvContent = resvContent;
+	public void setGrmType(String grmType) {
+		this.grmType = grmType;
+	}
+
+	public int getPay() {
+		return pay;
+	}
+
+	public void setPay(int pay) {
+		this.pay = pay;
 	}
 
 	@Override
 	public String toString() {
-		return " | "+resvno+" | "+resvTime+" | "+resvState+" | "+resvContent;
+		return " | "+resvno+" | "+resvTime+" | "+resvState+" | "+grmType+" | "+pay;
 	}
 	
 }
