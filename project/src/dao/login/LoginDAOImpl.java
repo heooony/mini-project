@@ -25,10 +25,7 @@ public class LoginDAOImpl implements LoginDAO {
 			
 			ps.setString(1, id);
 			ps.setString(2, password);
-<<<<<<< HEAD
-=======
-			
->>>>>>> 4a9a50dc5064d430575d01764c18cbeb748d5d68
+
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				String cstmName=rs.getString("cstm_name");
