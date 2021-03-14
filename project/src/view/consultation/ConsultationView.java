@@ -26,7 +26,7 @@ public class ConsultationView {
 			switch (memberID) {
 			case 1 : menuChoiceManager(); break;
 			case 2 : menuChoiceUser(); break;
-			case 9 : System.out.println(" 예약 프로그램 종료"); System.exit(0);
+			case 9 : System.out.println(" 예약 프로그램 종료"); break;
 			}
 		}
 	}

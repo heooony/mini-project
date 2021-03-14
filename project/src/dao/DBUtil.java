@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class DBUtil implements DBProperties {
+public class DBUtil {
 
 	private static Properties profile = new Properties();
 	public static Properties getProfile() {
@@ -18,14 +18,17 @@ public class DBUtil implements DBProperties {
 	static {
 		try {
 			profile.load(new FileInputStream("resources/csboard.properties"));
-			Class.forName(DBProperties.DRIVER_NAME);
+			profile.load(new FileInputStream("resources/dbInfo.properties"));
+			Class.forName(profile.getProperty("driverName"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(DBProperties.URL, DBProperties.USER_NAME, DBProperties.USER_PASS);
+		return DriverManager.getConnection(profile.getProperty("url"), 
+				profile.getProperty("userName"), 
+				profile.getProperty("userPass"));
 	}
 
 	public static void dbClose(Connection con, Statement st) {
