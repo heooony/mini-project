@@ -31,7 +31,9 @@ public class SubView {
 				case 3: UserView.printUser();
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
-				case 6: break;
+				case 6: MainView.printMenu();
+				System.out.println();
+				System.out.println();break;
 				case 0: AdminView.printAdminView(); break;
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
 			}

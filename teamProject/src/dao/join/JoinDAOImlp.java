@@ -27,7 +27,7 @@ public class JoinDAOImlp implements JoinDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Breed> list = new ArrayList<Breed>();
-		String sql = "select*from breed";
+		String sql = proFile.getProperty("join.getBreed");
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class JoinDAOImlp implements JoinDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Customer> list = new ArrayList<Customer>();
-		String sql = "select id from customer where id=?";
+		String sql = proFile.getProperty("join.checkId");
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();

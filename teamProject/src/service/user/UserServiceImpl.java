@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Customer searchMyInform(String id, String password) throws SQLException {
 		Customer customer = userDAO.searchMyInform(id, password);
-		if(customer==null)throw new SQLException("입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
+		if(customer==null)throw new SQLException("        입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
 		return customer;
 	}
 
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void modifyMyInform(String password, String pname, double pweight) throws SQLException {
 		int result = userDAO.modifyMyInform(password, pname, pweight);
-		if(result==0)throw new SQLException("입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
+		if(result==0)throw new SQLException("        입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteMyInform(String id, String password) throws SQLException {
 		int result = userDAO.deleteMyInform(id, password);
-		if(result!=0)throw new SQLException("입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
+		if(result!=0)throw new SQLException("       입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
 	}
 
 }

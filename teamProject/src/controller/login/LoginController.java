@@ -22,8 +22,8 @@ public class LoginController {
 	public Customer checkLogin(String id, String password) {
 		try {
 			Customer customer=service.checkLogin(id,password);	
-			SuccessView.printMessage("로그인 성공.");
-			SuccessView.printMessage("원하시는 서비스를 선택해주세요 ^^");
+			SuccessView.printMessage("         로그인 성공.");
+			SuccessView.printMessage("  원하시는 서비스를 선택해주세요 ^^");
 			System.out.println();
 			System.out.println();
 			SubView.printSubView();
