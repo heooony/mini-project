@@ -3,6 +3,7 @@ package dao.join;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import dao.DBUtil;
 import dao.join.JoinDAO;
@@ -11,12 +12,13 @@ import dto.Customer;
 
 public class JoinDAOImlp implements JoinDAO {
 	
+	private Properties proFile = DBUtil.getProfile();
+	
 	@Override
 	public int insertInform(Customer customer) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = "insert into customer "
-				+ "values(customer_crdno_seq.nextval , ?, ?, ?, ?, 0, ?, ?, ?, 'bronze')";
+		String sql = proFile.getProperty("join.insertInform");
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();

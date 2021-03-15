@@ -16,7 +16,7 @@ public interface UserService {
 	/**
 	 * 로그인한 회원의 회원정보를 수정하는 기능.
 	 */
-	public void modifyMyInform(String id, String password, String pname) throws SQLException;
+	public void modifyMyInform( String password, String pname, double pweight) throws SQLException;
 
 	/**
 	 * 회원정보를 삭제하는 기능.

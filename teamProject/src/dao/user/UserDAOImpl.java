@@ -4,19 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import dao.DBUtil;
 import dto.Customer;
 
 public class UserDAOImpl implements UserDAO {
-
+	
+	private Properties proFile = DBUtil.getProfile();
+	Customer customer = new Customer();
+	
 	@Override
 	public Customer searchMyInform(String id, String password) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Customer customer = null;
-		String sql = "select*from customer where id=? and password=?";
+		String sql = proFile.getProperty("user.searchMyInform");
 		try{
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -43,18 +47,24 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int modifyMyInform(String id, String password, String pname) throws SQLException{
+	public int modifyMyInform(String password, String pname, double pweight) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
-		Customer customer =null;
-		String sql = "update customer set pweight=? where id=?, password=?, pname=?";
-				
+		String sql = proFile.getProperty("user.modifyMyInform");
+		int result = 0;
 		try {
+			con= DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setDouble(1, pweight);
+			ps.setString(2, password);
+			ps.setString(3, pname);
+		
 			
+			result = ps.executeUpdate();
 		}finally {
-			
+			DBUtil.dbClose(con, ps);
 		}
-		return 0;
+		return result;
 	}
 
 	@Override
@@ -62,11 +72,19 @@ public class UserDAOImpl implements UserDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		Customer customer =null;
-		String sql = "delete from customer where id=?, password=?";
-		try {
+		String sql = proFile.getProperty("user.deleteMyInform");
+		int result = 0;
+		try {	
+			con= DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			ps.setString(2, password);
+			
+			result = ps.executeUpdate();
 			
 		}finally {
-			
+			DBUtil.dbClose(con, ps);
 		}
 		return 0;
 	}

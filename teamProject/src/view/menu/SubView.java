@@ -11,16 +11,18 @@ public class SubView {
 	public static void printSubView() {
 		Scanner s = new Scanner(System.in);
 		while(true) {
-			System.out.println("=============");
-			System.out.println("1. 예약하기");
-			System.out.println("2. 예약현황조회");
-			System.out.println("3. 내 정보 관리");
-			System.out.println("4. 멤버십");
-			System.out.println("5. 상담");
-			System.out.println("6. 이전으로");
-			System.out.println("0. 관리자모드");
-			System.out.println("=============");
-			System.out.print("선택 > ");
+			System.out.println("------------------------------------------------------");
+			System.out.println("                    Main Service");
+			System.out.println("------------------------------------------------------");
+			System.out.println("                  1. 예약하기            ");
+			System.out.println("                  2. 나의 예약현황 조회");
+			System.out.println("                  3. 내 정보 관리");
+			System.out.println("                  4. 멤버십 서비스 안내");
+			System.out.println("                  5. 상담");
+			System.out.println("                  6. 이전으로");
+			System.out.println("                  0. 관리자모드");
+			System.out.println("------------------------------------------------------");
+			System.out.println("원하시는 서비스 번호를 선택해주세요 >");
 			int menuChoice = s.nextInt();
 			switch(menuChoice) {
 				case 1: ReservationView.reservation(); break;

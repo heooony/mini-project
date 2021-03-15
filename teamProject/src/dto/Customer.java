@@ -43,9 +43,26 @@ public class Customer {
 	 * 로그인할때 필요한 생성자
 	 */
 	public Customer(String id, String password, String cstmName) {
-		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.password = password;
+		this.cstmName = cstmName;
 	}
 
+	/**
+	 * 반려견 몸무게 수정시 필요한 생성자.
+	 */
+
+	public Customer(String password, String pname, Double pweight) {
+		super();
+		this.password = password;
+		this.pname = pname;
+		this.pweight = pweight;
+	}
+
+
+	public Customer() {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	public int getCardno() {
