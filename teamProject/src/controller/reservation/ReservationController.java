@@ -57,9 +57,9 @@ public class ReservationController {
 		return customer;
 	}
 
-	public void setReservation(Reservation reservation) {
+	public void setReservation(Reservation reservation, int mileage) {
 		try {
-			service.setReservation(reservation);
+			service.setReservation(reservation, mileage);
 		} catch(SQLException e) {
 			System.out.println("예약에 실패하셨습니다.");
 		}

@@ -34,6 +34,7 @@ public class AdminDAO {
 		}
 		return list;
 	}
+	
 	public int setReservationState(int num, String state) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -55,6 +56,7 @@ public class AdminDAO {
 		}
 		return result;
 	}
+	
 	private void setPay(Connection con, List<Integer> list) throws SQLException {
 		PreparedStatement ps = null;
 		String sql = proFile.getProperty("admin.setPay");

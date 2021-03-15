@@ -7,14 +7,17 @@ import controller.admin.AdminController;
 public class ReservationListView {
 	static AdminController controller = new AdminController();
 	public static void reservationListView() {
-		Scanner s = new Scanner(System.in);
-		System.out.println("====================");
-		System.out.println("1. 대기 요청 변경  2. 이전으로");
-		System.out.println("====================");
-		System.out.print("메뉴를 선택해주세요 > ");
-		switch(s.nextInt()) {
-			case 1: setReservationState(); break;
-			case 2: break;
+		while(true) {
+			Scanner s = new Scanner(System.in);
+			System.out.println("====================");
+			System.out.println("1. 대기 요청 변경  2. 이전으로");
+			System.out.println("====================");
+			System.out.print("메뉴를 선택해주세요 > ");
+			switch(s.nextInt()) {
+				case 1: setReservationState(); break;
+				case 2: return;
+				default: System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+			}
 		}
 	}
 	

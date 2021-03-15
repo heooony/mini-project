@@ -55,8 +55,8 @@ public class ReservationServiceImpl {
 		return customer;
 	}
 
-	public void setReservation(Reservation reservation) throws SQLException {
-		reservationDAO.setReservation(reservation);
+	public void setReservation(Reservation reservation, int mileage) throws SQLException {
+		reservationDAO.setReservation(reservation, mileage);
 	}
 
 	public List<Reservation> checkReservation() throws SQLException{

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import dao.DBUtil;
 import dto.Customer;
@@ -15,12 +16,12 @@ import dto.Reservation;
 import session.SessionSet;
 
 public class ReservationDAO {
+	private Properties proFile = DBUtil.getProfile();
 	public List<Integer> getCalendar(String calendar) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "SELECT TO_CHAR(RESV_TIME, 'HH24'), GRM_TIMES FROM RESERVATION JOIN PRICE USING(GRM_TYPE) "
-				+ "WHERE TO_CHAR(RESV_TIME, 'YYYYMMDD') = ?";
+		String sql = proFile.getProperty("reservation.getCalendar");
 		List<Integer> list = new ArrayList<Integer>();
 		try {
 			con = DBUtil.getConnection();
@@ -87,7 +88,7 @@ public class ReservationDAO {
 		return customer;
 	}
 	
-	public void setReservation(Reservation reservation) throws SQLException {
+	public void setReservation(Reservation reservation, int mileage) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -100,12 +101,26 @@ public class ReservationDAO {
 			ps.setString(3, reservation.getResvState());
 			ps.setString(4, reservation.getGrmType());
 			ps.setInt(5, reservation.getPay());
+			setMileage(con, mileage, reservation.getCustomer().getCardno());
 			ps.executeUpdate();
 		} finally {
 			DBUtil.dbClose(con, ps);
 		}
 	}
-
+	
+	private void setMileage(Connection con, int mileage, int crdno) throws SQLException {
+		PreparedStatement ps = null;
+		String sql = "update customer set mileage = mileage - ? where crd_no = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, mileage);
+			ps.setInt(2, crdno);
+			ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(null, ps);
+		}
+	}
+	
 	public List<Reservation> checkReservation() throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;

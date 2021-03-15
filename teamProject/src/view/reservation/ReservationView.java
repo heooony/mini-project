@@ -67,13 +67,13 @@ public class ReservationView {
 		}
 		System.out.println(customer.getCstmName() + "고객님");
 		System.out.println(cal + " / " + time  + "시에 " + type + " 예약하셨습니다.");
-		System.out.println("총 금액은 " + price +"원 입니다.");
+		System.out.println("총 금액은 " + (price - mileage) +"원 입니다.");
 		System.out.println("예약하시겠습니까? (Y/N)");
 		while(true) {
 			String answer = sc.next();
 			if(answer.equals("Y") || answer.equals("y")) {
 				reservation = new Reservation(customer, 0, cal + time, "대기", type, price - mileage);
-				controller.setReservation(reservation);
+				controller.setReservation(reservation, mileage);
 				System.out.println("예약을 성공하셨습니다.");
 				break;
 			} else if(answer.equals("N") || answer.equals("n")) {
