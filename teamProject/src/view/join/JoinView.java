@@ -43,7 +43,7 @@ public class JoinView {
 				sc.nextLine();
 				String pbreed = sc.nextLine();
 	
-				customer = new Customer(0, id, password, cstmName, tel, 0,  pname, pweight, pbreed ) ;
+				customer = new Customer(0, id, password, cstmName, tel, 0,  pname, pweight, pbreed , null) ;
 				JoinController.insertInform(customer);
 				break;
 			

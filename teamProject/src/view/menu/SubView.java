@@ -25,7 +25,7 @@ public class SubView {
 			switch(menuChoice) {
 				case 1: ReservationView.reservation(); break;
 				case 2: ReservationView.checkReservation(); break;
-				case 3: UserView.userManagement(); break;
+				case 3: UserView.printUser();break;
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
 				case 6: break;

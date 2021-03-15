@@ -20,12 +20,6 @@ public class SuccessView {
 		System.out.println("==============================");
 	}
 
-
-
-	public static void confirmId(Customer customer) {
-		System.out.println(customer);
-
-	}
 	public static void printMessage(String message) {
 		System.out.println(message);
 
@@ -65,5 +59,14 @@ public class SuccessView {
 			System.out.println("[" + list.get(i).getResvState() + "] 상태입니다.");
 			System.out.println();
 		}
+	}
+
+
+	/**
+	 * 
+	 */
+	public static void printCustomerInform(Customer customer) {
+		System.out.println(customer);
+		
 	}
 }

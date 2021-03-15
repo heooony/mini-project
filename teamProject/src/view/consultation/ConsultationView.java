@@ -6,21 +6,66 @@ import dao.CSBoardDAO;
 import dao.CSBoardDAOImpl;
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
-import session.SessionSet;
 
 public class ConsultationView {
 	static Scanner sc = new Scanner(System.in);
-	private static SessionSet ss = SessionSet.getInstance();
-	private static CSBoardDAO boardDAO = new CSBoardDAOImpl();
+	public static CSBoardDAO boardDAO = new CSBoardDAOImpl();
 	
-	// 회원은 회원 전용 메뉴로 관리자는 관리자 전용 메뉴로
+	// 회원과 관리자 구분
+	// 회원은 회원 전용 메뉴로
+	// 관리자는 관리자 전용 메뉴로
+	
 	public static void csBoardSelect() {
+		while (true) {
+			System.out.print("\n ****** 테스트 메뉴를 선택하세요 ****** \n");
+			System.out.println("┏──────────────────┓");
+			System.out.println("┃ 1.관리자  |  2.일반회원  |  9.종료 ┃");
+			System.out.println("┗──────────────────┛");
+			System.out.print(" 번호 입력 >> ");
+			int memberID = Integer.parseInt(sc.nextLine());
+			switch (memberID) {
+			case 1 : menuChoiceManager(); break;
+			case 2 : menuChoiceUser(); break;
+			case 9 : System.out.println(" 예약 프로그램 종료"); System.exit(0);
+			}
+		}
+	}
 	
-		String id = (String)ss.get("user").getAttribute("id");
-		if (id.equals("oueya1479")) {
-			menuChoiceManager();
-		} else {
-			menuChoiceUser();
+	/**
+	 * 회원 메뉴
+	 */
+	public static void menuChoiceUser() {
+		while (true) {
+			System.out.println("\n┏──────────────┓");
+			System.out.println("┃       ♡ 회원 상담 ♡      ┃");
+			System.out.println("┣──────────────┫");
+			System.out.println("┃                            ┃");
+			System.out.println("┃   1. 전체 게시글 보기      ┃");
+			System.out.println("┃                            ┃");
+			System.out.println("┃   2. 검색하기              ┃");
+			System.out.println("┃                            ┃");
+			System.out.println("┃   3. 글쓰기                ┃");
+			System.out.println("┃                            ┃");
+			System.out.println("┃   4. 견종과 가격표         ┃");
+			System.out.println("┃                            ┃");
+			System.out.println("┃   9. 상담게시판 나가기     ┃");
+			System.out.println("┃                            ┃");
+			System.out.println("┗──────────────┛\n");
+			System.out.print(" 메뉴 선택 > ");
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1 : CSBoardController.boardSelectByAll(); break;
+				case 2 : searchMenu(); break;
+				case 3 : dmlMenu(); break;
+				case 4 : breedPrice(); break;
+				case 9 : 
+					System.out.println(" 상담페이지를 닫습니다."); return;
+				default : System.out.println(" 다시 입력해주세요.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println(" 메뉴 선택은 숫자만 가능합니다.");
+			}
 		}
 	}
 	
@@ -52,47 +97,9 @@ public class ConsultationView {
 				switch (menu) {
 				case 1 : CSBoardController.boardSelectByAll(); break;
 				case 2 : searchMenu(); break;
-				case 3 : dmlMenuByManager(); break;
+				case 3 : dmlMenu(); break;
 				case 4 : replyDmlMenu(); break;
 				case 5 : breedPrice(); break;
-				case 9 : 
-					System.out.println(" 상담페이지를 닫습니다."); return;
-				default : System.out.println(" 다시 입력해주세요.");
-				}
-			} catch (NumberFormatException e) {
-				System.out.println(" 메뉴 선택은 숫자만 가능합니다.");
-			}
-		}
-	}
-	
-	/**
-	 * 회원 메뉴
-	 */
-	public static void menuChoiceUser() {
-		while (true) {
-			System.out.println("\n┏──────────────┓");
-			System.out.println("┃       ♡ 회원 상담 ♡      ┃");
-			System.out.println("┣──────────────┫");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   1. 전체 게시글 보기      ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   2. 검색하기              ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   3. 질문하기              ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   4. 견종과 가격표         ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   9. 상담게시판 나가기     ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┗──────────────┛\n");
-			System.out.print(" 메뉴 선택 > ");
-			try {
-				int menu = Integer.parseInt(sc.nextLine());
-				switch (menu) {
-				case 1 : CSBoardController.boardSelectByAll(); break;
-				case 2 : searchMenu(); break;
-				case 3 : dmlMenu(); break;
-				case 4 : breedPrice(); break;
 				case 9 : 
 					System.out.println(" 상담페이지를 닫습니다."); return;
 				default : System.out.println(" 다시 입력해주세요.");
@@ -143,25 +150,6 @@ public class ConsultationView {
 	}
 	
 	/**
-	 * 글 쓰기, 글 수정, 글 삭제 (관리자용)
-	 * */
-	public static void dmlMenuByManager() {
-		while (true) {
-			System.out.println("┏───────────────────────┓");
-			System.out.println("┃ 1.등록  |  2.수정  |  3.삭제  |  9.뒤로가기  ┃");
-			System.out.println("┗───────────────────────┛");
-			System.out.print(" 번호를 입력해주세요 : ");
-			int no = Integer.parseInt(sc.nextLine());
-			switch (no) {
-			case 1:inputInsertBoard();break;
-			case 2:inputUpdateBoard();break;
-			case 3:inputDeleteBoardByManager();break;
-			case 9:return;
-			}
-		}
-	}
-	
-	/**
 	 * 답변 쓰기, 답변 수정, 답변 삭제
 	 * */
 	public static void replyDmlMenu() {
@@ -191,9 +179,9 @@ public class ConsultationView {
 			CSBoardController.boardSelectByNo(Integer.parseInt(boardNo));
 		} catch (NumberFormatException e) {
 			System.out.println(" 글번호는 숫자만 입력해주세요.");
-			System.out.print(" 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
-			int choice = Integer.parseInt(sc.nextLine());
-			if (choice == 1) {
+			System.out.print(" 다시 시도하시겠습니까? ( Y / N ) ");
+			String choice = sc.nextLine();
+			if (choice.equals("y") | choice.equals("Y")) {
 				inputBoardByNo();
 			}
 		}
@@ -231,7 +219,8 @@ public class ConsultationView {
 	 */
 	public static void inputInsertBoard() {
 		try {
-			String writer = (String)ss.get("user").getAttribute("id");
+			System.out.print(" 작성자 : ");
+			String writer = sc.nextLine();
 		
 			System.out.print(" 제목 : ");
 			String subject = sc.nextLine();
@@ -239,13 +228,15 @@ public class ConsultationView {
 			System.out.print(" 내용 : ");
 			String content = sc.nextLine();
 		
-			CSBoardDTO board = new CSBoardDTO(0, subject, writer, content, null);
+			System.out.print(" 비밀번호 : ");
+			int password = Integer.parseInt(sc.nextLine());
+			CSBoardDTO board = new CSBoardDTO(0, subject, writer, content, null, password);
 			CSBoardController.boardInsert(board);
 		}catch(Exception e) {
 			System.out.println(" 잘못된 입력입니다.(비밀번호는 필수이고 숫자만 입력 가능해요!)");
-			System.out.print(" 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
-			int choice = Integer.parseInt(sc.nextLine());
-			if (choice == 1) {
+			System.out.print(" 다시 시도하시겠습니까? ( Y / N ) ");
+			String choice = sc.nextLine();
+			if (choice.equals("y") | choice.equals("Y")) {
 				inputInsertBoard();
 			}
 		}
@@ -256,79 +247,77 @@ public class ConsultationView {
 	 */
 	public static void inputUpdateBoard() {
 
+		System.out.print(" 수정할 게시물 번호 : ");
+		int no = Integer.parseInt(sc.nextLine());
+
 		try {
-			System.out.print(" 수정할 게시물 번호 : ");
-			int no = Integer.parseInt(sc.nextLine());
 			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
-			String writer = (String) ss.get("user").getAttribute("id");
 			if (boardDTO != null) {
-				if (boardDTO.getWriter().equals(writer)) {
-					CSBoardController.boardSelectByNo(no);
-					System.out.print(" 검색된 게시물을 수정하시겠습니까? ( 1:예 / 2:아니오 )");
-					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
+				CSBoardController.boardSelectByNo(no);
+
+				while (true) {
+					System.out.print(" 비밀번호 : ");
+					int password = Integer.parseInt(sc.nextLine());
+					if (password == boardDTO.getPassword()) {
 						System.out.print(" 내용 수정 : ");
 						String content = sc.nextLine();
 						CSBoardDTO board = new CSBoardDTO(no, content);
 						CSBoardController.boardUpdate(board);
 						CSBoardController.boardSelectByNo(no);
-					} else System.out.println(" 수정이 취소되었습니다.");
-				} else {
-					System.out.println(" 본인이 작성한 글만 수정할 수 있습니다.");
+						return;
+					} else {
+						System.out.println(" 비밀번호가 일치하지 않습니다.");
+						System.out.print(" 다시 시도하시겠습니까? ( Y / N ) ");
+						String choice = sc.nextLine();
+						if (choice.equals("y") | choice.equals("Y")) {
+							continue;
+						} else if (choice.equals("n") | choice.equals("N")) {
+							return;
+						}
+					}
 				}
-			} else if (boardDTO == null) {
+			} else if ((boardDAO.boardSelectByNo(no) == null)) {
 				CSBoardController.boardSelectByNo(no);
 			}
 		} catch (Exception e) {
 			System.out.println(" 입력 정보 오류로 수정 실패");
 		}
 	}
-	
+
 	/**
 	 * 삭제
 	 */
 	public static void inputDeleteBoard() {
-		
+
+		System.out.print(" 삭제할 게시물 번호 : ");
+		int no = Integer.parseInt(sc.nextLine());
+
 		try {
-			System.out.print(" 삭제할 게시물 번호 : ");
-			int no = Integer.parseInt(sc.nextLine());
 			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
-			String writer = (String) ss.get("user").getAttribute("id");
 			if (boardDTO != null) {
-				if (boardDTO.getWriter().equals(writer)) {
-					CSBoardController.boardSelectByNo(no);
-					System.out.print(" 검색된 게시물을 삭제하시겠습니까? ( 1:예 / 2:아니오 )");
-					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
-						CSBoardController.boardDelete(no);
-					} else System.out.println(" 삭제가 취소되었습니다.");
-				} else {
-					System.out.println(" 본인이 작성한 글만 삭제할 수 있습니다.");
-				}
-			} else if (boardDTO == null) {
 				CSBoardController.boardSelectByNo(no);
-			}
-		} catch (Exception e) {
-			System.out.println(" 입력 정보 오류로 삭제 실패");
-		}
-	}
-	
-	/**
-	 * 관리자 권한으로 삭제
-	 */
-	public static void inputDeleteBoardByManager() {
-		
-		try {
-			System.out.print(" 삭제할 게시물 번호 : ");
-			int no = Integer.parseInt(sc.nextLine());
-			if (boardDAO.boardSelectByNo(no) != null) {
-					CSBoardController.boardSelectByNo(no);
-					System.out.print(" 검색된 게시물을 삭제하시겠습니까? ( 1:예 / 2:아니오 )");
-					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
-						CSBoardController.boardDelete(no);
-					} else System.out.println(" 삭제가 취소되었습니다.");
-			} else if (boardDAO.boardSelectByNo(no) == null) {
+
+				while (true) {
+					System.out.print(" 비밀번호 : ");
+					int password = Integer.parseInt(sc.nextLine());
+					if (password == boardDTO.getPassword()) {
+						System.out.print(" 검색된 게시물을 삭제하시겠습니까? ( Y / N )");
+						String choice = sc.nextLine();
+						if (choice.equals("y") | choice.equals("Y"))
+							CSBoardController.boardDelete(no);
+						return;
+					} else {
+						System.out.println(" 비밀번호가 일치하지 않습니다.");
+						System.out.print(" 다시 시도하시겠습니까? ( Y / N ) ");
+						String choice = sc.nextLine();
+						if (choice.equals("y") | choice.equals("Y")) {
+							continue;
+						} else if (choice.equals("n") | choice.equals("N")) {
+							return;
+						}
+					}
+				}
+			} else if ((boardDAO.boardSelectByNo(no) == null)) {
 				CSBoardController.boardSelectByNo(no);
 			}
 		} catch (Exception e) {
@@ -342,31 +331,29 @@ public class ConsultationView {
 	public static void inputInsertReply() {
 		try {
 			System.out.print("\n 답변을 등록할 게시물 번호를 입력해주세요.");
-			int no = Integer.parseInt(sc.nextLine());
-			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
-			if (boardDTO != null) {
-				CSBoardController.boardSelectByNo(no);
-				System.out.println(" 검색된 게시글에 답변을 작성하시겠습니까? ( 1:예 / 2:아니오 ) ");
-				int choice = Integer.parseInt(sc.nextLine());
-				if (choice == 1) {
-					String writer = (String)ss.get("user").getAttribute("id");
+			int boardNo = Integer.parseInt(sc.nextLine());
+			if (boardDAO.boardSelectByNo(boardNo) != null) {
+				CSBoardController.boardSelectByNo(boardNo);
+				System.out.println(" 검색된 게시글에 답변을 작성하시겠습니까? ( Y / N ) ");
+				String choice = sc.nextLine();
+				if (choice.equals("y") | choice.equals("Y")) {
+					System.out.print(" 답변 작성자 : ");
+					String writer = sc.nextLine();
 
 					System.out.print(" 답변 내용 : ");
 					String content = sc.nextLine();
 
-					CSReplyDTO reply = new CSReplyDTO(0, writer, content, no, null);
+					CSReplyDTO reply = new CSReplyDTO(0, writer, content, boardNo, null);
 					CSBoardController.insertReply(reply);
-					CSBoardController.boardSelectByNo(no);
-				} else {
-					System.out.println(" 답변 작성이 취소되었습니다.");
-				}
-			} else if (boardDTO == null) {
-				CSBoardController.boardSelectByNo(no);
+					CSBoardController.boardSelectByNo(boardNo);
+				} 
+			} else if (boardDAO.boardSelectByNo(boardNo) == null) {
+				CSBoardController.boardSelectByNo(boardNo);
 			}
 		} catch (Exception e) {
-			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
-			int choice = Integer.parseInt(sc.nextLine());
-			if (choice == 1) {
+			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( Y / N ) ");
+			String choice = sc.nextLine();
+			if (choice.equals("y") | choice.equals("Y")) {
 				inputInsertReply();
 			}
 		}
@@ -376,39 +363,31 @@ public class ConsultationView {
 	 * 댓글 수정하기
 	 */
 	public static void inputUadateReply() {
-		
 		try {
 			System.out.print("\n 답변을 수정할 게시물 번호를 입력해주세요.");
 			int boardNo = Integer.parseInt(sc.nextLine());
-			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(boardNo);
-			if (boardDTO != null) {
-				if (boardDTO.getReplyList().size() != 0) {
+			if (boardDAO.boardSelectByNo(boardNo) != null) {
+				CSBoardController.boardSelectByNo(boardNo);
+				System.out.print(" 검색된 게시글의 답변을 수정하시겠습니까? ( Y / N ) ");
+				String choice = sc.nextLine();
+				if (choice.equals("y") | choice.equals("Y")) {
+					System.out.print(" 수정할 댓글 번호 : ");
+					int no = Integer.parseInt(sc.nextLine());
+					
+					System.out.print(" 내용 수정 : ");
+					String content = sc.nextLine();
+					
+					CSReplyDTO reply = new CSReplyDTO(no, content);
+					CSBoardController.replyUpdateByNo(reply);
 					CSBoardController.boardSelectByNo(boardNo);
-					System.out.print(" 검색된 게시글의 답변을 수정하시겠습니까? ( 1:예 / 2:아니오 ) ");
-					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
-						System.out.print(" 수정할 댓글 번호 : ");
-						int no = Integer.parseInt(sc.nextLine());
-
-						System.out.print(" 내용 수정 : ");
-						String content = sc.nextLine();
-
-						CSReplyDTO reply = new CSReplyDTO(no, content);
-						CSBoardController.replyUpdateByNo(reply);
-						CSBoardController.boardSelectByNo(boardNo);
-					} else {
-						System.out.println(" 답변 수정이 취소되었습니다.");
-					}
-				} else if (boardDTO.getReplyList().size() == 0) {
-					System.out.println(" " + boardNo + "번 게시글에는 등록된 답변이 없습니다.");
-				}
-			} else if (boardDTO == null) {
+				} 
+			} else if (boardDAO.boardSelectByNo(boardNo) == null) {
 				CSBoardController.boardSelectByNo(boardNo);
 			}
 		} catch (Exception e) {
-			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
-			int choice = Integer.parseInt(sc.nextLine());
-			if (choice == 1) {
+			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( Y / N ) ");
+			String choice = sc.nextLine();
+			if (choice.equals("y") | choice.equals("Y")) {
 				inputUadateReply();
 			}
 		}
@@ -418,34 +397,27 @@ public class ConsultationView {
 	 * 댓글 삭제하기
 	 */
 	public static void inputDeleteReply() {
-		
 		try {
 			System.out.print("\n 답변을 삭제할 게시물 번호를 입력해주세요.");
 			int boardNo = Integer.parseInt(sc.nextLine());
-			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(boardNo);
-			if (boardDTO != null) {
-				if (boardDTO.getReplyList().size() != 0) {
+			if (boardDAO.boardSelectByNo(boardNo) != null) {
+				CSBoardController.boardSelectByNo(boardNo);
+				System.out.print(" 검색된 게시글의 답변을 삭제하시겠습니까? ( Y / N ) ");
+				String choice = sc.nextLine();
+				if (choice.equals("y") | choice.equals("Y")) {
+					System.out.print(" 삭제할 댓글 번호 : ");
+					int no = Integer.parseInt(sc.nextLine());
+
+					CSBoardController.replyDeleteByNo(no);
 					CSBoardController.boardSelectByNo(boardNo);
-					System.out.print(" 검색된 게시글의 답변을 삭제하시겠습니까? ( 1:예 / 2:아니오 ) ");
-					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
-						System.out.print(" 삭제할 댓글 번호 : ");
-						int no = Integer.parseInt(sc.nextLine());
-						CSBoardController.replyDeleteByNo(no);
-						CSBoardController.boardSelectByNo(boardNo);
-					} else {
-						System.out.println(" 답변 삭제가 취소되었습니다.");
-					}
-				} else if (boardDTO.getReplyList().size() == 0) {
-					System.out.println(" " + boardNo + "번 게시글에는 등록된 답변이 없습니다.");
-				}
-			} else if (boardDTO == null) {
+				} 
+			} else if (boardDAO.boardSelectByNo(boardNo) == null) {
 				CSBoardController.boardSelectByNo(boardNo);
 			}
 		} catch (Exception e) {
-			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
-			int choice = Integer.parseInt(sc.nextLine());
-			if (choice == 1) {
+			System.out.print(" 잘못된 입력값입니다. 다시 시도하시겠습니까? ( Y / N ) ");
+			String choice = sc.nextLine();
+			if (choice.equals("y") | choice.equals("Y")) {
 				inputDeleteReply();
 			}
 		}
