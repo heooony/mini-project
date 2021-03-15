@@ -10,7 +10,6 @@ public class CSBoardDTO {
 	private String writer; // 작성자
 	private String content; // 내용
 	private String boardDate; // 등록일 -> board_Data
-	private int password;  // 비밀번호
 	
 	// 현재 글번호에 해당하는 답변(댓글) 정보
 	private List<CSReplyDTO> replyList = new ArrayList<CSReplyDTO>();
@@ -25,12 +24,11 @@ public class CSBoardDTO {
 		this.content = content;
 	}
 
-	public CSBoardDTO(int boardNo, String subject, String writer, String content, String boardDate, int password) {
+	public CSBoardDTO(int boardNo, String subject, String writer, String content, String boardDate) {
 		this(boardNo, content);
 		this.subject = subject;
 		this.writer = writer;
 		this.boardDate = boardDate;
-		this.password = password;
 	}
 
 	public int getBoardNo() {
@@ -80,14 +78,6 @@ public class CSBoardDTO {
 
 	public void setReplyList(List<CSReplyDTO> replyList) {
 		this.replyList = replyList;
-	}
-	
-	public int getPassword() {
-		return password;
-	}
-
-	public void setPassword(int password) {
-		this.password = password;
 	}
 	
 	@Override

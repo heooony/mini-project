@@ -5,6 +5,7 @@ import java.util.List;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
+import dto.Price;
 
 public interface CSBoardService {
 	/**
@@ -61,4 +62,19 @@ public interface CSBoardService {
 	 * 댓글 삭제
 	 */
 	void replyDeleteByNo(int replyNo) throws SQLException;
+	
+	/**
+	 * 가격표 전체 리스트 출력
+	 * */
+	List<Price> priceSelectAll() throws SQLException;
+	
+	/**
+	 * 가격표 레코드 입력
+	 * */
+	void priceInsert(Price price) throws SQLException;
+	
+	/**
+	 * 가격표 레코드 삭제
+	 * */
+	void priceDelete(String grmType) throws SQLException;
 }

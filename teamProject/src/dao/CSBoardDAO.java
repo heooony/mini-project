@@ -5,8 +5,16 @@ import java.util.List;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
+import dto.Customer;
+import dto.Price;
 
 public interface CSBoardDAO {
+	
+	/**
+	 * ID로 회원 검색
+	 * */
+	Customer searchUserByID(String id) throws SQLException;
+	
 	/**
 	 * 레코드 전체검색
 	 */
@@ -19,38 +27,31 @@ public interface CSBoardDAO {
 	
 	/**
 	 * 제목에 특정 문자열이 포함된 레코드 검색
-	 * select * from board where subject like ?
 	 */
 	List<CSBoardDTO> boardSelectBySubject(String keyWord) throws SQLException;
 	
 	/**
 	 * 작성자명에 특정 문자열이 포함된 레코드 검색
-	 * select * from board where subject like ?
 	 */
 	List<CSBoardDTO> boardSelectByWriter(String keyWord) throws SQLException;
 	
 	/**
 	 * 내용에 특정 문자열이 포함된 레코드 검색
-	 * select * from board where subject like ?
 	 */
 	List<CSBoardDTO> boardSelectByContent(String keyWord) throws SQLException;
 	
 	/**
 	 * 게시물 등록하기
-	 * insert into board (board_no, subject, writer, content, board_date) 
-	 * values (board_seq.nextval, ?, ?, ?, sysdate)
 	 */
 	int boardInsert(CSBoardDTO boardDTO) throws SQLException;
 	
 	/**
 	 * 글번호에 해당하는 게시물 내용 수정하기
-	 * update board set content = ? where board_no = ?
 	 */
 	int boardUpdate(CSBoardDTO boardDTO) throws SQLException;
 	
 	/**
 	 * 글번호에 해당하는 레코드 삭제(댓글도 같이 삭제)
-	 * delete from board where board_no = ?
 	 */
 	int boardDelete(int boardNo) throws SQLException;
 	
@@ -68,6 +69,20 @@ public interface CSBoardDAO {
 	 * 번호에 해당하는 댓글 삭제
 	 * */
 	int replyDeleteByNo(int replyNo) throws SQLException;
-
+	
+	/**
+	 * 가격표 전체 리스트 출력
+	 * */
+	List<Price> priceSelectAll() throws SQLException;
+	
+	/**
+	 * 가격표 레코드 입력
+	 * */
+	int priceInsert(Price price) throws SQLException;
+	
+	/**
+	 * 가격표 레코드 삭제
+	 * */
+	int priceDelete(String grmType) throws SQLException;
 }
 

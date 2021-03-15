@@ -10,11 +10,45 @@ import java.util.Properties;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
+import dto.Customer;
+import dto.Price;
 
 public class CSBoardDAOImpl implements CSBoardDAO {
 	
 	private Properties proFile = DBUtil.getProfile();
+	
+	/**
+	 * ID로 회원 검색
+	 * */
+	@Override
+	public Customer searchUserByID(String id) throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Customer customer = null;
+		String sql = proFile.getProperty("user.searchByID");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				
+				customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+						rs.getInt(6), rs.getString(7), rs.getDouble(8), rs.getString(9), rs.getString(10));
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}		
+		return customer;
+	}
 
+	/**
+	 * 전체 게시글 출력
+	 * */
 	@Override
 	public List<CSBoardDTO> boardSelectAll() throws SQLException {
 		
@@ -35,9 +69,8 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
-				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 				
@@ -68,7 +101,7 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				boardDTO = new CSBoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				boardDTO = new CSBoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 			
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				boardDTO.setReplyList(replyList);
@@ -79,6 +112,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		return boardDTO;
 	}
 	
+	/**
+	 * 제목 검색
+	 * */
 	@Override
 	public List<CSBoardDTO> boardSelectBySubject(String keyWord) throws SQLException {
 
@@ -100,9 +136,8 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
-				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -115,6 +150,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		return list;
 	}
 	
+	/**
+	 * 작성자 검색
+	 * */
 	@Override
 	public List<CSBoardDTO> boardSelectByWriter(String keyWord) throws SQLException {
 		
@@ -136,9 +174,8 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
-				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -151,6 +188,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		return list;
 	}
 
+	/**
+	 * 내용 검색
+	 * */
 	@Override
 	public List<CSBoardDTO> boardSelectByContent(String keyWord) throws SQLException {
 		
@@ -172,9 +212,8 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
-				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -187,6 +226,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		return list;
 	}
 	
+	/**
+	 * 게시글 입력
+	 * */
 	@Override
 	public int boardInsert(CSBoardDTO boardDTO) throws SQLException {
 
@@ -201,7 +243,6 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			ps.setString(1, boardDTO.getSubject());
             ps.setString(2, boardDTO.getWriter());
             ps.setString(3, boardDTO.getContent());
-            ps.setInt(4, boardDTO.getPassword());
             
 			result = ps.executeUpdate();
 			
@@ -211,6 +252,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		return result;
 	}
 
+	/**
+	 * 게시글 수정
+	 * */
 	@Override
 	public int boardUpdate(CSBoardDTO boardDTO) throws SQLException {
 		
@@ -280,8 +324,6 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 		}
 		return result;
 	}
-
-	
 	
 	/**
 	 * 부모글에 해당하는 댓글 정보 가져오기
@@ -373,6 +415,89 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, replyNo);
+            
+            result = ps.executeUpdate();
+			
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
+	/**
+	 * 가격표 전체 리스트 출력
+	 * */
+	@Override
+	public List<Price> priceSelectAll() throws SQLException {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<Price> list = new ArrayList<>();
+		String sql = proFile.getProperty("price.selectAll");
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				
+				String grmType = rs.getString("grm_type");
+				int bCost = rs.getInt("b_cost");
+				int spcCost = rs.getInt("spc_cost");
+				int grmTimes = rs.getInt("grm_times");
+				
+				Price price = new Price(grmType, bCost, spcCost, grmTimes);
+				list.add(price);
+			}
+			
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+	/**
+	 * 가격표 레코드 입력
+	 * */
+	@Override
+	public int priceInsert(Price price) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = proFile.getProperty("price.insert");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, price.getGrmType());
+            ps.setInt(2, price.getbCost());
+            ps.setInt(3, price.getSpcCost());
+            ps.setInt(4, price.getGrmTimes());
+            
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+
+	/**
+	 * 가격표 레코드 삭제
+	 * */
+	@Override
+	public int priceDelete(String grmType) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		String sql = proFile.getProperty("price.delete");
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, grmType);
             
             result = ps.executeUpdate();
 			

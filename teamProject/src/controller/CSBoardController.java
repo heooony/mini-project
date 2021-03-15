@@ -5,6 +5,7 @@ import java.util.List;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
+import dto.Price;
 import service.CSBoardService;
 import service.CSBoardServiceImpl;
 import view.FailView;
@@ -140,6 +141,42 @@ public class CSBoardController {
 	public static void replyDeleteByNo(int replyNo) {
 		try {
 			boardService.replyDeleteByNo(replyNo);
+			SuccessView.printMessage(" 삭제되었습니다.");
+		} catch (SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 가격표 전체 리스트 출력
+	 * */
+	public static void priceSelectAll() {
+		try {
+			List<Price> list = boardService.priceSelectAll();
+			SuccessView.allPriceListPrint(list);
+		} catch (SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 가격표 레코드 입력
+	 * */
+	public static void priceInsert(Price price) {
+		try {
+			boardService.priceInsert(price);
+			SuccessView.printMessage(" 등록되었습니다.");
+		} catch (SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 가격표 레코드 삭제
+	 * */
+	public static void priceDelete(String grmType) {
+		try {
+			boardService.priceDelete(grmType);
 			SuccessView.printMessage(" 삭제되었습니다.");
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());

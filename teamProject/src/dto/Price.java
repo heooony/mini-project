@@ -51,7 +51,7 @@ public class Price {
 	
 	@Override
 	public String toString() {
-		return " | "+grmType+" | "+bCost+" | "+spcCost+" | "+grmTimes;
+		return " | "+grmType+" | "+bCost+"원 | "+spcCost+"원 | "+grmTimes+"시간";
 	}
 	
 }

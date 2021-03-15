@@ -52,6 +52,18 @@ public class SuccessView {
 		System.out.println();
 	}
 	
+	/**
+	 * 가격표 리스트 전체 출력
+	 * */
+	public static void allPriceListPrint(List<Price> list) {
+		System.out.println("\n -------------- [ 가격표 ] --------------\n");
+		for(Price price : list) {
+			System.out.println(price);
+			System.out.println(" ----------------------------------------");
+		}
+		System.out.println();
+	}
+	
 	public static void printReservation(List<Reservation> list) {
 		System.out.println("===============예약 현황===============");
 		for(int i = 0; i < list.size(); i++) {
