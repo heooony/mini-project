@@ -27,14 +27,14 @@ public class JoinServiceImpl implements JoinService {
 			
 		}
 		joinDAO.insertInform(customer);
-		if(customer==null)System.out.println("이미 등록된 정보입니다. 다시 시도해주세요.");
+		if(customer==null)System.out.println("         이미 등록된 정보입니다. 다시 시도해주세요.");
 	}
 
 
 	@Override
 	public int checkId(String id) throws SQLException {
 		int result = joinDAO.checkId(id);
-		if(result !=0)throw new SQLException("중복된 Id입니다.");
+		if(result !=0)throw new SQLException("        중복된 Id입니다.");
 		return result;
 		
 	}

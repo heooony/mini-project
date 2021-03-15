@@ -17,12 +17,12 @@ public class LoginView {
 	public void loginstart(){
 		while(true) {
 			System.out.println("------------------------------");
-			System.out.println("           LOGIN");
+			System.out.println("            LOGIN");
 			System.out.println("------------------------------");
 		
-				System.out.print("     ID  : ");
+				System.out.print("      ID  : ");
 				String id = sc.nextLine();
-				System.out.print("     PW  : ");
+				System.out.print("      PW  : ");
 				String password = sc.nextLine();
 				controller.checkLogin(id, password);
 				
