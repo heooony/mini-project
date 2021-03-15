@@ -2,6 +2,7 @@ package view.menu;
 
 import java.util.Scanner;
 
+import view.admin.AdminView;
 import view.consultation.ConsultationView;
 import view.membership.MembershipView;
 import view.reservation.ReservationView;
@@ -27,11 +28,11 @@ public class SubView {
 			switch(menuChoice) {
 				case 1: ReservationView.reservation(); break;
 				case 2: ReservationView.checkReservation(); break;
-				case 3: UserView.printUser();break;
+				//case 3: UserView.userManagement(); break;
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
 				case 6: break;
-				case 0: 
+				case 0: AdminView.printAdminView(); break;
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
 			}
 		}

@@ -10,7 +10,7 @@ import dto.Price;
 import dto.Reservation;
 
 public class ReservationServiceImpl {
-	private static ReservationServiceImpl instance;
+	private static ReservationServiceImpl instance = new ReservationServiceImpl();;
 	public ReservationDAO reservationDAO = new ReservationDAO();
 
 	private ReservationServiceImpl() {}
@@ -27,7 +27,6 @@ public class ReservationServiceImpl {
 	}
 	
 	public static ReservationServiceImpl getInstance() {
-		instance = new ReservationServiceImpl();
 		return instance;
 	}
 

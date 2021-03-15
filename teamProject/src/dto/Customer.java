@@ -22,7 +22,7 @@ public class Customer {
 		this.tel = tel;
 	}
 
-
+	
 	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage, String pname,
 			Double pweight, String pbreed, String grade) {
 		super();
@@ -58,6 +58,9 @@ public class Customer {
 		this.pname = pname;
 		this.pweight = pweight;
 	}
+	
+
+
 
 
 	public Customer() {

@@ -69,4 +69,16 @@ public class SuccessView {
 		System.out.println(customer);
 		
 	}
+
+	public static void printReservationList(List<Reservation> list) {
+		System.out.println("===============예약 현황===============");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i).getCustomer().getCstmName()+ "고객님의 반려견 " + list.get(i).getCustomer().getPname() + " 예약 대기상태입니다.");
+			System.out.println("전화번호 : " + list.get(i).getCustomer().getTel());
+			System.out.println("예약시간 : " + list.get(i).getResvTime());
+			System.out.println("예약내용 : " + list.get(i).getGrmType());
+			System.out.println("예약금액 : " + list.get(i).getPay());
+			System.out.println();
+		}
+	}
 }
