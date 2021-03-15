@@ -17,6 +17,7 @@ public class UserView {
 			System.out.println("-----------------------------------------------------");
 			System.out.println(" 1. 회원정보조회  2. 반려견정보수정  3. 회원탈퇴   0. 메인으로 " );
 			System.out.println("-----------------------------------------------------");
+			System.out.print("서비스 번호를 선택해주세요 >");
 			int choiceNum = Integer.parseInt(sc.nextLine());
 			switch(choiceNum) {
 			case 1: 
@@ -47,7 +48,7 @@ public class UserView {
 		System.out.println("                다시 한번 로그인 해주세요^^");
 		System.out.print("ID : ");
 		String id =sc.nextLine();
-		System.out.println("Password : ");
+		System.out.print("Password : ");
 		String password = sc.nextLine();
 		UserController.searchMyInform(id, password);
 	}

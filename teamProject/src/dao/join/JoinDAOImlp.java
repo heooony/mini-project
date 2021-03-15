@@ -71,4 +71,28 @@ public class JoinDAOImlp implements JoinDAO {
 
 
 	}
+
+
+	@Override
+	public int checkId(String id) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Customer> list = new ArrayList<Customer>();
+		String sql = "select id from customer where id=?";
+		int result = 0;
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result++;
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return result;
+	}
+		
 }

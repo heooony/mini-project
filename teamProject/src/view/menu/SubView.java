@@ -23,12 +23,12 @@ public class SubView {
 			System.out.println("                  6. 이전으로");
 			System.out.println("                  0. 관리자모드");
 			System.out.println("------------------------------------------------------");
-			System.out.println("원하시는 서비스 번호를 선택해주세요 >");
+			System.out.print("서비스 번호를 선택해주세요 >");
 			int menuChoice = s.nextInt();
 			switch(menuChoice) {
 				case 1: ReservationView.reservation(); break;
 				case 2: ReservationView.checkReservation(); break;
-				//case 3: UserView.userManagement(); break;
+				case 3: UserView.printUser();
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
 				case 6: break;

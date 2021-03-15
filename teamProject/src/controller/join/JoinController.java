@@ -34,4 +34,21 @@ public class JoinController {
 			
 		}
 	}
+
+	/**
+	 * id 중복체크하는 메소드.
+	 * @param id
+	 */
+	public static int checkId(String id) {
+		try {
+			int result=joinService.checkId(id);
+			SuccessView.printMessage("사용가능한 Id입니다.");
+			
+		}catch(SQLException e){
+			FailView.printMessage("사용할 수 없는 Id입니다. 다른 Id를 사용해주세요.");
+			joinView.joinStart();
+		}
+		return 0;
+		
+	}
 }

@@ -31,4 +31,13 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 
+	@Override
+	public int checkId(String id) throws SQLException {
+		int result = joinDAO.checkId(id);
+		if(result !=0)throw new SQLException("중복된 Id입니다.");
+		return result;
+		
+	}
+
+
 }

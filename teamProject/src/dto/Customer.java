@@ -67,6 +67,13 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * id 중복체크 할때 필요한 생성자
+	 */
+	public Customer(String id) {
+		this.id = id;
+	}
+
 
 	public int getCardno() {
 		return cardno;
