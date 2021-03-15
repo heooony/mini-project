@@ -14,14 +14,20 @@ public class JoinServiceImpl implements JoinService {
 
 	private JoinDAO joinDAO = new JoinDAOImlp();
 
+	
 	@Override
 	public void insertinform(Customer customer) throws SQLException {
+		List<Breed> list=joinDAO.getBreed();
+		for(int i=0; i< list.size(); i++) {
+			if(list.get(i).getBname().equals(customer.getPbreed())) {
+				customer.setPbreed(customer.getPbreed()+"(일)");
+				break;
+			}if(i==list.size()-1)
+			customer.setPbreed(customer.getPbreed()+"(특)");
+			
+		}
 		joinDAO.insertInform(customer);
-		List<Breed> list = new ArrayList<Breed>();
-		
-		
-		
-		if(customer==null)System.out.println("이미 등록된 정보입니다. 다시 시도해주세");
+		if(customer==null)System.out.println("이미 등록된 정보입니다. 다시 시도해주세요.");
 	}
 
 

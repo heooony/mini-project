@@ -2,17 +2,48 @@ package dao.join;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import dao.DBUtil;
-import dao.join.JoinDAO;
+import dto.Breed;
 import dto.Customer;
 
 
 public class JoinDAOImlp implements JoinDAO {
 	
 	private Properties proFile = DBUtil.getProfile();
+	
+	/**
+	 * 회원정보 등록하기전에 견종샘플을 비교하여 일반견, 특수견을 구분짓는 메소드
+	 */
+	@SuppressWarnings("null")
+	@Override
+	public List<Breed> getBreed() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Breed> list = new ArrayList<Breed>();
+		String sql = "select*from breed";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String bname = rs.getString("bname");
+				
+				Breed breed = new Breed(bname);
+				list.add(breed);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+		
 	
 	@Override
 	public int insertInform(Customer customer) throws SQLException {
@@ -36,5 +67,8 @@ public class JoinDAOImlp implements JoinDAO {
 			DBUtil.dbClose(con, ps);
 		}
 		return result;
+	
+
+
 	}
 }

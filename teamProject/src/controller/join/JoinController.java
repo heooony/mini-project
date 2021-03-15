@@ -26,6 +26,7 @@ public class JoinController {
 		try {
 			joinService.insertinform(customer);
 			SuccessView.printMessage("고객정보 등록 완료.");
+			MainView.printMenu();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 			FailView.printMessage("회원가입 실패. 다시 시도해주세요 ^^");
