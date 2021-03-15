@@ -293,31 +293,7 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			
 			ps.setInt(1, boardNo);
             
-			replyDeleteByBoardNo(boardNo);
 			result = ps.executeUpdate();
-			
-		} finally {
-			DBUtil.dbClose(con, ps);
-		}
-		return result;
-	}
-	
-	/**
-	 * 부모글번호에 해당하는 댓글 삭제하기
-	 * */
-	public int replyDeleteByBoardNo(int boardNo) throws SQLException {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		int result = 0;
-		String sql = proFile.getProperty("reply.deleteByBoardNo");
-		try {
-			con = DBUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			
-			ps.setInt(1, boardNo);
-            
-            result = ps.executeUpdate();
 			
 		} finally {
 			DBUtil.dbClose(con, ps);
