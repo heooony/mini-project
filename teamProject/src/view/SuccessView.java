@@ -78,6 +78,7 @@ public class SuccessView {
 			System.out.println("예약시간 : " + list.get(i).getResvTime());
 			System.out.println("예약내용 : " + list.get(i).getGrmType());
 			System.out.println("예약금액 : " + list.get(i).getPay());
+			System.out.println("예약번호 : " + list.get(i).getResvno());
 			System.out.println();
 		}
 	}

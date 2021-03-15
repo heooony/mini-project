@@ -20,6 +20,7 @@ public class ReservationView {
 		String type = null;
 		String cal = null;
 		int time = 0;
+		int mileage = 0;
 		int price = 0;
 		
 		while(true) {
@@ -58,7 +59,8 @@ public class ReservationView {
 			System.out.println("마일리지를 얼마 사용하시겠습니까?");
 			System.out.println("현재 가지고 있는 마일리지 : " + customer.getMileage());
 			System.out.print("입력 > ");
-			if(sc.nextInt() > customer.getMileage()) {
+			mileage = sc.nextInt();
+			if(mileage > customer.getMileage()) {
 				System.out.println("가지고 있는 마일리지보다 더 큰 금액을 입력하셨습니다.");
 				continue;
 			} else break;
@@ -70,7 +72,7 @@ public class ReservationView {
 		while(true) {
 			String answer = sc.next();
 			if(answer.equals("Y") || answer.equals("y")) {
-				reservation = new Reservation(customer, 0, cal + time, "대기", type, price);
+				reservation = new Reservation(customer, 0, cal + time, "대기", type, price - mileage);
 				controller.setReservation(reservation);
 				System.out.println("예약을 성공하셨습니다.");
 				break;

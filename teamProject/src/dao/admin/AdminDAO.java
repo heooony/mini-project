@@ -26,11 +26,65 @@ public class AdminDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) { //고객이름, 반려견이름, 전화번호, 시간, 내용, 금액
 				Customer c = new Customer(0, null, null, rs.getString("cstm_name"), rs.getString("tel"), 0, rs.getString("p_name"), 0.0, null, null);
-				Reservation r = new Reservation(c, 0, rs.getString(4) + "시", null, rs.getString("grm_type"), rs.getInt("pay"));
+				Reservation r = new Reservation(c, rs.getInt("resv_no"), rs.getString(4) + "시", null, rs.getString("grm_type"), rs.getInt("pay"));
 				list.add(r);
 			}
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+	public int setReservationState(int num, String state) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		List<Integer> list = new ArrayList<Integer>();
+		String sql = proFile.getProperty("admin.setReservationState");
+		int result = 0;
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, state);
+			ps.setInt(2, num);
+			if(state.equals("완료")) {
+				list = getInfo(con, num);
+				setPay(con, list);
+			}
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	private void setPay(Connection con, List<Integer> list) throws SQLException {
+		PreparedStatement ps = null;
+		String sql = proFile.getProperty("admin.setPay");
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, list.get(2));
+			ps.setInt(2, list.get(3));
+			ps.setInt(3, list.get(0));
+			ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(null, ps);
+		}
+	}
+	private List<Integer> getInfo(Connection con, int num) throws SQLException {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = proFile.getProperty("admin.getInfo");
+		List<Integer> list = new ArrayList<Integer>();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				list.add(rs.getInt("crd_no"));
+				list.add(rs.getInt("mileage"));
+				list.add(rs.getInt("pay"));
+				list.add(rs.getInt("discount_rate"));
+			}
+		} finally {
+			DBUtil.dbClose(null, ps, rs);
 		}
 		return list;
 	}

@@ -19,4 +19,10 @@ public class AdminService {
 		List<Reservation> list = adminDAO.getReservationAwaiter();
 		return list;
 	}
+
+	public int setReservationState(int num, String state) throws SQLException {
+		if(!state.equals("완료") && !state.equals("취소")) throw new SQLException("상태 변경이 잘못되었습니다.");
+		int result = adminDAO.setReservationState(num, state);
+		return result;
+	}
 }
