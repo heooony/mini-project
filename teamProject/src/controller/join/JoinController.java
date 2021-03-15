@@ -25,11 +25,11 @@ public class JoinController {
 		
 		try {
 			joinService.insertinform(customer);
-			SuccessView.printMessage("고객정보 등록 완료.");
+			SuccessView.printMessage("         고객정보 등록 완료.");
 			MainView.printMenu();
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
-			FailView.printMessage("회원가입 실패. 다시 시도해주세요 ^^");
+			FailView.printMessage("        회원가입 실패. 다시 시도해주세요 ^^");
 			joinView.joinStart();
 			
 		}
@@ -40,15 +40,16 @@ public class JoinController {
 	 * @param id
 	 */
 	public static int checkId(String id) {
+			int result = 0;
 		try {
-			int result=joinService.checkId(id);
-			SuccessView.printMessage("사용가능한 Id입니다.");
+			result=joinService.checkId(id);
+			SuccessView.printMessage("       사용가능한 Id입니다^^");
 			
 		}catch(SQLException e){
-			FailView.printMessage("사용할 수 없는 Id입니다. 다른 Id를 사용해주세요.");
+			FailView.printMessage("이미 사용중인 Id입니다. 다른 Id를 이용해주세요");
 			joinView.joinStart();
 		}
-		return 0;
+		return result;
 		
 	}
 }

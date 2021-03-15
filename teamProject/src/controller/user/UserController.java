@@ -20,11 +20,11 @@ public class UserController {
 	public static void searchMyInform(String id, String password) {
 		try {
 			Customer customer =userService.searchMyInform(id, password);
-			SuccessView.printMessage(id+ "고객님의 회원정보가 확인되었습니다 ^^");
+			SuccessView.printMessage("           "+id+ "고객님의 회원정보가 확인되었습니다 ^^");
 			System.out.println();
 			SuccessView.printCustomerInform(customer);
 		} catch (SQLException e) {
-			FailView.printMessage("회원정보 조회 실패. 상담게시판이나 유선 연락 바랍니다.");
+			FailView.printMessage("        회원정보 조회 실패. 상담게시판이나 유선 연락 바랍니다.");
 		}
 		
 	}
@@ -38,7 +38,7 @@ public class UserController {
 			System.out.println();
 			SuccessView.printMessage(pname+"의 정보가 성공적으로 수정되었습니다.");
 		} catch (SQLException e) {
-			FailView.printMessage("회원정보수정 실패. 상담게시판이나 유선 연락 바랍니다.");
+			FailView.printMessage("        회원정보수정 실패. 상담게시판이나 유선 연락 바랍니다.");
 		}
 		
 	}
@@ -49,11 +49,11 @@ public class UserController {
 	public static void deleteMyInform(String id, String password) {
 		try {
 			userService.deleteMyInform(id, password);
-			SuccessView.printMessage(id+"회원님의 탈퇴가 완료되었습니다.");
-			System.out.println("그동안 이용해주셔서 감사합니다.");
+			SuccessView.printMessage("         "+id+"회원님의 탈퇴가 완료되었습니다.");
+			System.out.println("        그동안 이용해주셔서 감사합니다.");
 			MainView.printMenu();
 		} catch (SQLException e) {
-			FailView.printMessage("회원탈퇴실패. 관리자에게 문의 바랍니다.");
+			FailView.printMessage("          회원탈퇴실패. 관리자에게 문의 바랍니다.");
 			FailView.printMessage(e.getMessage());
 		}
 		

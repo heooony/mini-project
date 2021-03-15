@@ -19,17 +19,17 @@ public class JoinView {
 				System.out.println("-----------------------------------");
 				while(true){
 					int result=0;
-					System.out.print("     id :");
+					System.out.print("         id :");
 					id = sc.nextLine();
 					JoinController.checkId(id);
 					if(result!=0) continue;
 					else break;
 					}
-					System.out.print("     PW  : ");
+					System.out.print("         PW  : ");
 					String password = sc.nextLine();
-					System.out.print("     고객명 : ");
+					System.out.print("         고객명 : ");
 					String cstmName = sc.nextLine();
-					System.out.print("     연락처 : ");
+					System.out.print("         연락처 : ");
 					String tel = sc.nextLine();
 					System.out.println("-----------------------------------");
 					System.out.println("       Puppy's Information");
