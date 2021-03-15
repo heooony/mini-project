@@ -12,7 +12,7 @@ public class Customer {
 	private String pname;  //반려견이름
 	private Double pweight;   //몸무게
 	private String pbreed; //견종
-	
+	private String grade; //멤버십 등급
 
 	// 회원가입시 회원아이디, 비밀번호, 이름, 연락처만 받는 생성자
 	public Customer(String id, String password, String cstmName, String tel) {
@@ -24,7 +24,7 @@ public class Customer {
 
 
 	public Customer(int cardno, String id, String password, String cstmName, String tel, int mileage, String pname,
-			Double pweight, String pbreed) {
+			Double pweight, String pbreed, String grade) {
 		super();
 		this.cardno = cardno;
 		this.id = id;
@@ -35,6 +35,7 @@ public class Customer {
 		this.pname = pname;
 		this.pweight = pweight;
 		this.pbreed = pbreed;
+		this.grade = grade;
 	}
 
 
@@ -153,13 +154,30 @@ public class Customer {
 		this.pbreed = pbreed;
 	}
 
+	
+	
+
+	public String getGrade() {
+		return grade;
+	}
+
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
 
 	@Override
 	public String toString() {
-		return "-------------------------------고객정보--------------------------------------"
-				+ " 카드번호 : " + cardno + ", 마일리지 : " + mileage
-				+ " ID : " + id + ", PassWord :" + password + 
-				" 성함 : " + cstmName+ ", 연락처 : " + tel  + 
+		return "--------------------------------------------------------------------------"+'\n'+
+			   "                                회원정보 조회                              "+'\n'+
+			   "--------------------------------------------------------------------------"+'\n'
+				+ " 카드번호 : " + cardno + ", 마일리지 : " + mileage+ ", 멤버십 등급 : "+grade+'\n'
+				+ " ID : " + id + ", PassWord :" + password + '\n'+
+				" 성함 : " + cstmName+ ", 연락처 : " + tel  + '\n'+
+				"--------------------------------------------------------------------------"+'\n'+
+				"                               반려견 정보                                 "+'\n'+
+				"--------------------------------------------------------------------------"+'\n'+
 				" 반려견 이름 :" + pname + ", 몸무게 : " + pweight + ", 견종 : "+ pbreed;
 	}
 

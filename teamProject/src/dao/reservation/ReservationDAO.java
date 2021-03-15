@@ -79,7 +79,7 @@ public class ReservationDAO {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				customer = new Customer(rs.getInt(1), null, null, rs.getString(2), null, rs.getInt(3),
-						rs.getString(4), rs.getDouble(5), rs.getString(6));
+						rs.getString(4), rs.getDouble(5), rs.getString(6), null);
 			}
 		} finally {
 			DBUtil.dbClose(con, ps, rs);

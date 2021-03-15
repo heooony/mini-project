@@ -13,6 +13,4 @@ public interface JoinService {
 	 * 입력한 정보들로 회원가입하는 메소드
 	 */
 	public void insertinform(Customer customer) throws SQLException;
-
-	
 }

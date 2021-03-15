@@ -16,7 +16,7 @@ public class JoinDAOImlp implements JoinDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = "insert into customer "
-				+ "values(customer_crdno_seq.nextval , ?, ?, ?, ?, 0, ?, ?, ?)";
+				+ "values(customer_crdno_seq.nextval , ?, ?, ?, ?, 0, ?, ?, ?, 'bronze')";
 		int result = 0;
 		try {
 			con = DBUtil.getConnection();

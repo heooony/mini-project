@@ -35,8 +35,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
+				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 				
@@ -67,7 +68,7 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				boardDTO = new CSBoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				boardDTO = new CSBoardDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
 			
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				boardDTO.setReplyList(replyList);
@@ -99,8 +100,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
+				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -134,8 +136,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
+				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -169,8 +172,9 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 				String writer = rs.getString("writer");
 				String content = rs.getString("content");
 				String boardDate = rs.getString("board_date");
+				int password = rs.getInt("password");
 				
-				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate);
+				CSBoardDTO dto = new CSBoardDTO(boardNo, subject, writer, content, boardDate, password);
 				List<CSReplyDTO> replyList = this.replyList(con, boardNo);
 				dto.setReplyList(replyList);
 			
@@ -197,6 +201,7 @@ public class CSBoardDAOImpl implements CSBoardDAO {
 			ps.setString(1, boardDTO.getSubject());
             ps.setString(2, boardDTO.getWriter());
             ps.setString(3, boardDTO.getContent());
+            ps.setInt(4, boardDTO.getPassword());
             
 			result = ps.executeUpdate();
 			
