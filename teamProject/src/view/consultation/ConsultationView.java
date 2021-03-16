@@ -33,24 +33,19 @@ public class ConsultationView {
 	 */
 	public static void menuChoiceManager() {
 		while (true) {
-			System.out.println("\n┏──────────────┓");
-			System.out.println("┃  ♡ 회원 상담 (관리자) ♡  ┃");
-			System.out.println("┣──────────────┫");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   1. 전체 게시글 보기      ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   2. 검색하기              ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   3. 질문글 관리           ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   4. 답변 관리             ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   5. 가격표 관리           ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   9. 상담게시판 나가기     ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┗──────────────┛\n");
-			System.out.print(" 메뉴 선택 : ");
+			System.out.println();
+			System.out.println("┌────────────────────────────────────────┐");
+			System.out.println("      🍇 BoardService - Admin ver 🍇      " );     
+			System.out.println(" ────────────────────────────────────────");
+			System.out.println("             1. 전체 게시글 조회");
+			System.out.println("             2. 검색하기 ");
+			System.out.println("             3. 질문 게시글 관리");
+			System.out.println("             4. 답변 관리");
+			System.out.println("             5. 가격표 관리");
+			System.out.println("             9. 이전으로");
+			System.out.println("└────────────────────────────────────────┘");
+			System.out.print("서비스 번호를 입력해주세요 > ");
+			System.out.println();
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -74,23 +69,18 @@ public class ConsultationView {
 	 */
 	public static void menuChoiceUser() {
 		while (true) {
-			System.out.println("\n┏──────────────┓");
-			System.out.println("┃       ♡ 회원 상담 ♡      ┃");
-			System.out.println("┣──────────────┫");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   1. 전체 게시글 보기      ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   2. 검색하기              ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   3. 질문하기              ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   4. 가격표                ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┃   9. 상담게시판 나가기     ┃");
-			System.out.println("┃                            ┃");
-			System.out.println("┗──────────────┛\n");
-			System.out.print(" 메뉴 선택 > ");
-			try {
+			System.out.println();
+			System.out.println("┌────────────────────────────────────────┐");
+			System.out.println("           🍇 Customer Service 🍇            " );     
+			System.out.println(" ────────────────────────────────────────");
+			System.out.println("             1. 전체 게시글 조회");
+			System.out.println("             2. 검색하기 ");
+			System.out.println("             3. 질문 하기");
+			System.out.println("             4. 가격표 조회");
+			System.out.println("             9. 이전으로");
+			System.out.println("└────────────────────────────────────────┘");
+			System.out.print("서비스 번호를 입력해주세요 > ");
+					try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
 				case 1 : CSBoardController.boardSelectByAll(); break;
@@ -112,10 +102,16 @@ public class ConsultationView {
 	 * */
 	public static void searchMenu() {
 		while (true) {
-			System.out.println("┏──────────────────────────────┓");
-			System.out.println("┃ 1.글번호  |  2.제목  |  3.작성자  |  4.내용  |  9.뒤로가기 ┃");
-			System.out.println("┗──────────────────────────────┛");
-			System.out.print(" 무엇으로 검색하시겠습니까? 번호를 입력해주세요 : ");
+		System.out.println("┌──────────────────────────────────┐");
+		System.out.println("        🍇 Pogle Service 🍇      " );     
+		System.out.println(" ──────────────────────────────────");
+		System.out.println("            1. 글번호");
+		System.out.println("            2. 제목 ");
+		System.out.println("            3. 작성자");
+		System.out.println("            4. 내용");
+		System.out.println("            9. 이전으로");
+		System.out.println("└──────────────────────────────────┘");
+		System.out.print(" 무엇으로 검색하시겠습니까? 번호를 입력해주세요 > ");
 			int no = Integer.parseInt(sc.nextLine());
 			switch (no) {
 			case 1:inputBoardByNo();break;

@@ -86,7 +86,7 @@ public class UserDAOImpl implements UserDAO {
 		}finally {
 			DBUtil.dbClose(con, ps);
 		}
-		return 0;
+		return result;
 	}
 
 }

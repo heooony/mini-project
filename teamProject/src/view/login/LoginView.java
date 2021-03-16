@@ -16,10 +16,9 @@ public class LoginView {
 	 */
 	public void loginstart(){
 		while(true) {
-			System.out.println("------------------------------");
-			System.out.println("            LOGIN");
-			System.out.println("------------------------------");
-		
+			System.out.println("┌─────────────────────────────┐");
+			System.out.println("         🍇 LOGIN 🍇          " );         
+			System.out.println("└─────────────────────────────┘");
 				System.out.print("      ID  : ");
 				String id = sc.nextLine();
 				System.out.print("      PW  : ");

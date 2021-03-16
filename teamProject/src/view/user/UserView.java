@@ -14,11 +14,11 @@ public class UserView {
 		while (true) {
 			System.out.println();
 			System.out.println();
-			System.out.println("-----------------------------------------------------");
-			System.out.println("                  USER SERVICE");
-			System.out.println("-----------------------------------------------------");
-			System.out.println(" 1. 회원정보조회  2. 반려견정보수정  3. 회원탈퇴   0. 메인으로 " );
-			System.out.println("-----------------------------------------------------");
+			System.out.println("┌──────────────────────────────────────────────────────┐");
+			System.out.println("                  🍇 USER SERVICE 🍇               " );       
+			System.out.println(" ──────────────────────────────────────────────────────");
+			System.out.println("   1. 회원정보조회  2. 반려견정보수정  3. 회원탈퇴   0. 메인으로 " );      
+			System.out.println("└──────────────────────────────────────────────────────┘");
 			System.out.print("서비스 번호를 선택해주세요 >");
 			int choiceNum = Integer.parseInt(sc.nextLine());
 			switch(choiceNum) {
@@ -45,9 +45,9 @@ public class UserView {
 	public static void searchMyInfromView() {
 		System.out.println();
 		System.out.println();
-		System.out.println("------------------------------------------------------");
-		System.out.println("                Customer's Information");
-		System.out.println("------------------------------------------------------");
+		System.out.println("┌──────────────────────────────────────────────────────┐");
+		System.out.println("             🍇 Customer's Information 🍇             " );       
+		System.out.println("└──────────────────────────────────────────────────────┘");
 		System.out.println("         -- 고객 정보 보호를 위해 로그아웃 되었습니다.");
 		System.out.println("                다시 한번 로그인 해주세요^^");
 		System.out.print("              ID : ");
@@ -60,9 +60,9 @@ public class UserView {
 	public static void modifyingView() {
 		System.out.println();
 		System.out.println();
-		System.out.println("----------------------------------------------------------");
-		System.out.println("                 Modifying Information");
-		System.out.println("----------------------------------------------------------");
+		System.out.println("┌──────────────────────────────────────────────────────┐");
+		System.out.println("             🍇  Modifying Information 🍇             " );       
+		System.out.println("└──────────────────────────────────────────────────────┘");
 		System.out.println("               비밀번호를 다시 한번 입력해주세요^^");
 		System.out.print("              Password : ");
 		String password = sc.nextLine();
@@ -77,9 +77,11 @@ public class UserView {
 	
 	
 	public static void deleteView() {
-		System.out.println("--------------------------------------------------");
-		System.out.println("              Membership Withdrawal");
-		System.out.println("--------------------------------------------------");
+		System.out.println();
+		System.out.println();
+		System.out.println("┌──────────────────────────────────────────────────────┐");
+		System.out.println("             🍇  Membership Withdrawal 🍇             " );       
+		System.out.println("└──────────────────────────────────────────────────────┘");
 		System.out.println("             정말 탈퇴하시겠습니까? yes/no");
 		String confirm = sc.nextLine();
 		if(confirm.equals("yes")) {
@@ -91,7 +93,7 @@ public class UserView {
 			UserController.deleteMyInform(id, password);
 		}else if(confirm.equals("no")){
 			System.out.println();
-			System.out.println("      더 나은 서비스를 위해 노력하겠습니다 ^^");
+			System.out.println("         더 나은 서비스를 위해 노력하겠습니다 ^^");
 			System.out.println();
 			SubView.printSubView();
 		}
