@@ -40,13 +40,13 @@ public class AdminController {
 		}
 	}
 
-	public void getAuth() {
+	public int getAuth() {
 		try {
 			service.getAuth();
-			System.out.println("관리자님 환영합니다.");
-			AdminView.printAdminView();
+			return 1;
 		} catch(SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}
+		return 0;
 	}
 }

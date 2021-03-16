@@ -46,7 +46,7 @@ public class ReservationDAO {
 		Statement st = null;
 		ResultSet rs = null;
 		List<Price> list = new ArrayList<Price>();
-		String sql = "SELECT * FROM PRICE";
+		String sql = proFile.getProperty("reservation.getPrice");
 		try {
 			con = DBUtil.getConnection();
 			st = con.createStatement();
@@ -71,8 +71,7 @@ public class ReservationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Customer customer = null;
-		String sql = "SELECT CRD_NO, CSTM_NAME, MILEAGE,  P_NAME, P_WEIGHT, CASE WHEN P_BREED LIKE '%일%' THEN '일반견' WHEN P_BREED LIKE '%특%' THEN '특수견' END FROM CUSTOMER "
-				+ "WHERE ID = ?";
+		String sql = proFile.getProperty("reservation.getCustomer");
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -92,8 +91,8 @@ public class ReservationDAO {
 	public void setReservation(Reservation reservation, int mileage) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = "INSERT INTO RESERVATION VALUES (RESERVATION_RESVNO_SEQ.NEXTVAL, ?, TO_DATE(?, 'YYYYMMDDHH24'), ?, ?, ?)";
+		String sql = proFile.getProperty("reservation.setReservation");
+				
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
@@ -103,6 +102,7 @@ public class ReservationDAO {
 			ps.setString(4, reservation.getGrmType());
 			ps.setInt(5, reservation.getPay());
 			setMileage(con, mileage, reservation.getCustomer().getCardno());
+			System.out.println(1);
 			ps.executeUpdate();
 		} finally {
 			DBUtil.dbClose(con, ps);
@@ -111,7 +111,8 @@ public class ReservationDAO {
 	
 	private void setMileage(Connection con, int mileage, int crdno) throws SQLException {
 		PreparedStatement ps = null;
-		String sql = "update customer set mileage = mileage - ? where crd_no = ?";
+		String sql = proFile.getProperty("reservation.setMileage");
+		
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, mileage);
@@ -127,8 +128,8 @@ public class ReservationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		List<Reservation> list = new ArrayList<Reservation>();
-		String sql = "SELECT TO_CHAR(RESV_TIME, 'YYYY-MM-DD HH24') || '시', RESV_STATE, GRM_TYPE, PAY FROM RESERVATION JOIN CUSTOMER USING(CRD_NO) "
-				+ "WHERE ID = ?" ;
+		String sql = proFile.getProperty("reservation.checkReservation");
+				
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);

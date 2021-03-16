@@ -15,21 +15,14 @@ public class LoginView {
 	 * 회원정보(아이디, 비밀번호, 연락처, 반려견이름, 몸무게, 견종)받아서 가입하는 메소
 	 */
 	public void loginstart(){
-		while(true) {
 			System.out.println("┌─────────────────────────────┐");
 			System.out.println("         🍇 LOGIN 🍇          " );         
 			System.out.println(" ───────────────────────────── ");
-				System.out.print("      ID  : ");
-				String id = sc.nextLine();
-				System.out.print("      PW  : ");
-				String password = sc.nextLine();
-				System.out.println("└─────────────────────────────┘");
-				controller.checkLogin(id, password);
-				
-		}
-		
+			System.out.print("      ID  : ");
+			String id = sc.nextLine();
+			System.out.print("      PW  : ");
+			String password = sc.nextLine();
+			System.out.println("└─────────────────────────────┘");
+			controller.checkLogin(id, password);
 	}
-
-	
-	
 }
