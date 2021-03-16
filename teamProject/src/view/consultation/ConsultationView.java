@@ -142,8 +142,8 @@ public class ConsultationView {
 	 */
 	public static void inputBoardBySubject() {
 		System.out.print(" 제목 검색 : ");
-		String word = sc.nextLine();
-		CSBoardController.boardSelectBySubject(word); returnMenu();
+		String subject = sc.nextLine();
+		CSBoardController.boardSelectBySubject(subject); returnMenu();
 	}
 	
 	/**
@@ -151,8 +151,8 @@ public class ConsultationView {
 	 */
 	public static void inputBoardByWriter() {
 		System.out.print(" 작성자 검색 : ");
-		String word = sc.nextLine();
-		CSBoardController.boardSelectByWriter(word); returnMenu();
+		String writer = sc.nextLine();
+		CSBoardController.boardSelectByWriter(writer); returnMenu();
 	}
 	
 	/**
@@ -160,8 +160,8 @@ public class ConsultationView {
 	 */
 	public static void inputBoardByContent() {
 		System.out.print(" 내용 검색 : ");
-		String word = sc.nextLine();
-		CSBoardController.boardSelectByContent(word); returnMenu();
+		String content = sc.nextLine();
+		CSBoardController.boardSelectByContent(content); returnMenu();
 	}
 	
 	/**

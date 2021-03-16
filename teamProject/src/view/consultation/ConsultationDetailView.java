@@ -1,6 +1,7 @@
 package view.consultation;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import controller.CSBoardController;
@@ -47,9 +48,9 @@ public class ConsultationDetailView {
 			System.out.println("┌────────────────────────────────────────┐");
 			System.out.println("            🍇 BoardService 🍇          " );     
 			System.out.println(" ────────────────────────────────────────");
-			System.out.println("               1. 게시글 등록");
-			System.out.println("               2. 게시글 수정 ");
-			System.out.println("               3. 게시글 삭제");
+			System.out.println("               1. 질문 등록");
+			System.out.println("               2. 질문 수정 ");
+			System.out.println("               3. 질문 삭제");
 			System.out.println("               9. 이전으로");
 			System.out.println("└────────────────────────────────────────┘");
 			System.out.print("서비스 번호를 입력해주세요 > ");
@@ -117,17 +118,17 @@ public class ConsultationDetailView {
 	 * 게시글 수정하기
 	 */
 	public static void inputUpdateBoard() {
-
+		SessionSet ss = SessionSet.getInstance();
+		String writer = (String)ss.get("user").getAttribute("id");
 		try {
-			System.out.print(" 수정할 게시물 번호 : ");
-			int no = Integer.parseInt(sc.nextLine());
-			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
-			SessionSet ss = SessionSet.getInstance();
-			String writer = (String) ss.get("user").getAttribute("id");
-			if (boardDTO != null) {
+			List<CSBoardDTO> list = boardDAO.boardSelectByWriter(writer);
+			if(list.size()!=0) {
+				CSBoardController.boardSelectByWriter(writer);
+				System.out.print(" 수정할 게시물 번호 : ");
+				int no = Integer.parseInt(sc.nextLine());
+				CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
 				if (boardDTO.getWriter().equals(writer)) {
-					CSBoardController.boardSelectByNo(no);
-					System.out.print(" 검색된 게시물을 수정하시겠습니까? ( 1:예 / 2:아니오 )");
+					System.out.print(" "+no+" 번 게시물을 수정하시겠습니까? ( 1:예 / 2:아니오 )");
 					int choice = Integer.parseInt(sc.nextLine());
 					if (choice == 1) {
 						System.out.print(" 내용 수정 : ");
@@ -139,11 +140,11 @@ public class ConsultationDetailView {
 				} else {
 					System.out.println(" 본인이 작성한 글만 수정할 수 있습니다.");
 				}
-			} else if (boardDTO == null) {
-				CSBoardController.boardSelectByNo(no);
+			} else if(list.size()==0) {
+				System.out.println(" 작성한 게시물이 없습니다.");
 			}
 		} catch (Exception e) {
-			System.out.println(" 입력 정보 오류로 수정 실패");
+			System.out.println(" 없는 글 번호입니다.");
 		}
 	}
 	
@@ -151,17 +152,17 @@ public class ConsultationDetailView {
 	 * 게시글 삭제하기
 	 */
 	public static void inputDeleteBoard() {
-		
+		SessionSet ss = SessionSet.getInstance();
+		String writer = (String)ss.get("user").getAttribute("id");
 		try {
-			System.out.print(" 삭제할 게시물 번호 : ");
-			int no = Integer.parseInt(sc.nextLine());
-			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
-			SessionSet ss = SessionSet.getInstance();
-			String writer = (String) ss.get("user").getAttribute("id");
-			if (boardDTO != null) {
+			List<CSBoardDTO> list = boardDAO.boardSelectByWriter(writer);
+			if(list.size()!=0) {
+				CSBoardController.boardSelectByWriter(writer);
+				System.out.print(" 삭제할 게시물 번호 : ");
+				int no = Integer.parseInt(sc.nextLine());
+				CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
 				if (boardDTO.getWriter().equals(writer)) {
-					CSBoardController.boardSelectByNo(no);
-					System.out.print(" 검색된 게시물을 삭제하시겠습니까? ( 1:예 / 2:아니오 )");
+					System.out.print(" "+no+" 번 게시물을 삭제하시겠습니까? ( 1:예 / 2:아니오 )");
 					int choice = Integer.parseInt(sc.nextLine());
 					if (choice == 1) {
 						CSBoardController.boardDelete(no);
@@ -169,11 +170,11 @@ public class ConsultationDetailView {
 				} else {
 					System.out.println(" 본인이 작성한 글만 삭제할 수 있습니다.");
 				}
-			} else if (boardDTO == null) {
-				CSBoardController.boardSelectByNo(no);
+			} else if(list.size()==0) {
+				System.out.println(" 작성한 게시물이 없습니다.");
 			}
 		} catch (Exception e) {
-			System.out.println(" 입력 정보 오류로 삭제 실패");
+			System.out.println(" 없는 글 번호입니다.");
 		}
 	}
 	

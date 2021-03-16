@@ -42,10 +42,10 @@ public class CSBoardServiceImpl implements CSBoardService {
 	 * 제목에 특정 문자열이 포함된 레코드 검색
 	 */
 	@Override
-	public List<CSBoardDTO> boardSelectBySubject(String keyWord) throws SQLException {
-		List<CSBoardDTO> list = boardDAO.boardSelectBySubject(keyWord);
+	public List<CSBoardDTO> boardSelectBySubject(String subject) throws SQLException {
+		List<CSBoardDTO> list = boardDAO.boardSelectBySubject(subject);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+keyWord+"에 해당하는 게시글 제목은 없습니다.");
+			throw new SQLException(" "+subject+"에 해당하는 게시글 제목은 없습니다.");
 		}
 		return list;
 	}
@@ -54,10 +54,10 @@ public class CSBoardServiceImpl implements CSBoardService {
 	 * 작성자명에 특정 문자열이 포함된 레코드 검색
 	 */
 	@Override
-	public List<CSBoardDTO> boardSelectByWriter(String keyWord) throws SQLException {
-		List<CSBoardDTO> list = boardDAO.boardSelectByWriter(keyWord);
+	public List<CSBoardDTO> boardSelectByWriter(String writer) throws SQLException {
+		List<CSBoardDTO> list = boardDAO.boardSelectByWriter(writer);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+keyWord+"에 해당하는 작성자는 없습니다.");
+			throw new SQLException(" "+writer+"에 해당하는 작성자는 없습니다.");
 		}
 		return list;
 	}
@@ -66,10 +66,10 @@ public class CSBoardServiceImpl implements CSBoardService {
 	 * 내용에 특정 문자열이 포함된 레코드 검색
 	 */
 	@Override
-	public List<CSBoardDTO> boardSelectByContent(String keyWord) throws SQLException {
-		List<CSBoardDTO> list = boardDAO.boardSelectByContent(keyWord);
+	public List<CSBoardDTO> boardSelectByContent(String content) throws SQLException {
+		List<CSBoardDTO> list = boardDAO.boardSelectByContent(content);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+keyWord+"에 해당하는 게시물이 존재하지 않습니다.");
+			throw new SQLException(" "+content+"에 해당하는 게시물이 존재하지 않습니다.");
 		}
 		return list;
 	}
