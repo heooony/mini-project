@@ -169,7 +169,8 @@ public class ConsultationView {
 	 * */
 	public static void returnMenu() {
 		System.out.println();
-		System.out.print(" Enter를 입력하시면 이전 메뉴로 돌아갑니다.");
+		System.out.print("  이전메뉴로 돌아가려면 Enter를 눌러주세요.");
+		Scanner sc = new Scanner(System.in);
 		sc.nextLine();
 	}
 }

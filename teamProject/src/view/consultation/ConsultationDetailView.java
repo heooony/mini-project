@@ -45,12 +45,12 @@ public class ConsultationDetailView {
 	public static void dmlMenu() {
 		while (true) {
 			System.out.println("┌────────────────────────────────────────┐");
-			System.out.println("            🍇 BoardService 🍇          " );     
+			System.out.println("          🍇 My BoardService 🍇          " );     
 			System.out.println(" ────────────────────────────────────────");
-			System.out.println("               1. 게시글 등록");
-			System.out.println("               2. 게시글 수정 ");
-			System.out.println("               3. 게시글 삭제");
-			System.out.println("               9. 이전으로");
+			System.out.println("             1. 게시글 등록");
+			System.out.println("             2. 게시글 수정 ");
+			System.out.println("             3. 게시글 삭제");
+			System.out.println("             9. 이전으로");
 			System.out.println("└────────────────────────────────────────┘");
 			System.out.print("서비스 번호를 입력해주세요 > ");
 			int no = Integer.parseInt(sc.nextLine());
