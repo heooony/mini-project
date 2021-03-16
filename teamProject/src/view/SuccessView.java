@@ -5,6 +5,7 @@ import java.util.List;
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
 import dto.Customer;
+import dto.Grades;
 import dto.Price;
 import dto.Reservation;
 
@@ -92,6 +93,25 @@ public class SuccessView {
 			System.out.println("예약금액 : " + list.get(i).getPay());
 			System.out.println("예약번호 : " + list.get(i).getResvno());
 			System.out.println();
+			
 		}
+	}
+
+	public static void printMembership(List<Grades> list) {
+		System.out.println("==========멤버십 정보==========");
+		System.out.println("등급   |   승급 조건(결제횟수)   |   마일리지 적립(%)");
+		for(int i = 1; i < list.size(); i++) {
+			System.out.println(list.get(i).getGrade() + " | " + list.get(i).getCrtMile() + "회 " + " | " + list.get(i).getdiscount() + "%");
+		}
+	}
+
+	public static void printMembershipCard(Customer customer) {
+		System.out.println("┌───────────────");
+		System.out.println("│MEMBERSHIP                    " + customer.getPname());
+		System.out.println("│");
+		System.out.println("│  " + customer.getCardno() );
+		System.out.println("│");
+		System.out.println("│  " + customer.getCstmName() + "\t\t" + customer.getGrade());
+		System.out.println("└───────────────");
 	}
 }

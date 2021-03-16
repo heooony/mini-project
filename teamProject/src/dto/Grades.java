@@ -4,17 +4,15 @@ package dto;
 public class Grades {
 
 	private String grade;        //회원등급
-	private double mileByGrade;  //등급별마일리지
 	private int crtMile;         //승급기준마일리지
-	private String benefit;      //승급혜택
+	private int discount;      //승급혜택
 	
 	public Grades() {}
 
-	public Grades(String grade, double mileByGrade, int crtMile, String benefit) {
+	public Grades(String grade, int crtMile, int discount) {
 		this.grade = grade;
-		this.mileByGrade = mileByGrade;
 		this.crtMile = crtMile;
-		this.benefit = benefit;
+		this.discount = discount;
 	}
 
 	public String getGrade() {
@@ -25,14 +23,6 @@ public class Grades {
 		this.grade = grade;
 	}
 
-	public double getMileByGrade() {
-		return mileByGrade;
-	}
-
-	public void setMileByGrade(double mileByGrade) {
-		this.mileByGrade = mileByGrade;
-	}
-
 	public int getCrtMile() {
 		return crtMile;
 	}
@@ -41,17 +31,17 @@ public class Grades {
 		this.crtMile = crtMile;
 	}
 
-	public String getBenefit() {
-		return benefit;
+	public int getdiscount() {
+		return discount;
 	}
 
-	public void setBenefit(String benefit) {
-		this.benefit = benefit;
+	public void setdiscount(int discount) {
+		this.discount = discount;
 	}
 	
 	@Override
 	public String toString() {
-		return " | "+grade+" | "+mileByGrade+" | "+crtMile+" | "+benefit;
+		return " | "+grade+" | "+crtMile+" | "+discount;
 	}
 	
 }

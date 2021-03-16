@@ -78,7 +78,7 @@ public class ReservationView {
 				break;
 			} else if(answer.equals("N") || answer.equals("n")) {
 				System.out.println("예약을 취소합니다.");
-				continue;
+				break;
 			} else {
 				System.out.println("잘못 입력하셨습니다.");
 				continue;

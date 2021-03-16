@@ -59,8 +59,15 @@ public class Customer {
 		this.pweight = pweight;
 	}
 	
+	
 
-
+	public Customer(int cardno, String cstmName, String pname, String grade) {
+		super();
+		this.cardno = cardno;
+		this.cstmName = cstmName;
+		this.pname = pname;
+		this.grade = grade;
+	}
 
 
 	public Customer() {
