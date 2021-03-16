@@ -41,7 +41,7 @@ public class ConsultationView {
 			System.out.println("┃                            ┃");
 			System.out.println("┃   2. 검색하기              ┃");
 			System.out.println("┃                            ┃");
-			System.out.println("┃   3. 게시물 관리           ┃");
+			System.out.println("┃   3. 질문글 관리           ┃");
 			System.out.println("┃                            ┃");
 			System.out.println("┃   4. 답변 관리             ┃");
 			System.out.println("┃                            ┃");

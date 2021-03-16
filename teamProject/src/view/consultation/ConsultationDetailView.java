@@ -1,6 +1,9 @@
 package view.consultation;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import controller.CSBoardController;
 import dao.CSBoardDAO;
@@ -189,12 +192,12 @@ public class ConsultationDetailView {
 	 */
 	public static void inputInsertReply() {
 		try {
-			System.out.print("\n 답변을 등록할 게시물 번호를 입력해주세요.");
+			System.out.print("\n 답변을 등록할 '게시물 번호'를 입력해주세요.");
 			int no = Integer.parseInt(sc.nextLine());
 			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(no);
 			if (boardDTO != null) {
 				CSBoardController.boardSelectByNo(no);
-				System.out.println(" 검색된 게시글에 답변을 작성하시겠습니까? ( 1:예 / 2:아니오 ) ");
+				System.out.println(" 검색된 게시물에 답변을 작성하시겠습니까? ( 1:예 / 2:아니오 ) ");
 				int choice = Integer.parseInt(sc.nextLine());
 				if (choice == 1) {
 					SessionSet ss = SessionSet.getInstance();
@@ -225,31 +228,37 @@ public class ConsultationDetailView {
 	 * 답변 수정하기
 	 */
 	public static void inputUadateReply() {
-		
+
 		try {
-			System.out.print("\n 답변을 수정할 게시물 번호를 입력해주세요.");
+			System.out.print("\n 답변을 수정할 '게시물 번호'를 입력해주세요.");
 			int boardNo = Integer.parseInt(sc.nextLine());
 			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(boardNo);
 			if (boardDTO != null) {
 				if (boardDTO.getReplyList().size() != 0) {
 					CSBoardController.boardSelectByNo(boardNo);
-					System.out.print(" 검색된 게시글의 답변을 수정하시겠습니까? ( 1:예 / 2:아니오 ) ");
+					System.out.print(" 검색된 게시물의 답변을 수정하시겠습니까? ( 1:예 / 2:아니오 ) ");
 					int choice = Integer.parseInt(sc.nextLine());
 					if (choice == 1) {
-						System.out.print(" 수정할 댓글 번호 : ");
+						System.out.print(" 수정할 답변 번호 : ");
 						int no = Integer.parseInt(sc.nextLine());
 
-						System.out.print(" 내용 수정 : ");
-						String content = sc.nextLine();
-
-						CSReplyDTO reply = new CSReplyDTO(no, content);
-						CSBoardController.replyUpdateByNo(reply);
-						CSBoardController.boardSelectByNo(boardNo);
+						Iterator<CSReplyDTO> replyIr = boardDTO.getReplyList().iterator();
+						while(replyIr.hasNext()) {
+							CSReplyDTO replyDTO = replyIr.next();
+							if(replyDTO.getReplyNo()==no) {
+								System.out.print(" 내용 수정 : ");
+								String content = sc.nextLine();
+								CSReplyDTO reply = new CSReplyDTO(no, content);
+								CSBoardController.replyUpdateByNo(reply);
+								CSBoardController.boardSelectByNo(boardNo);
+							}
+						}
+						System.out.println(" 검색된 게시글에 작성된 답변이 아닙니다. 답변 번호를 확인하세요.");
 					} else {
 						System.out.println(" 답변 수정이 취소되었습니다.");
 					}
 				} else if (boardDTO.getReplyList().size() == 0) {
-					System.out.println(" " + boardNo + "번 게시글에는 등록된 답변이 없습니다.");
+					System.out.println(" " + boardNo + "번 게시물에는 등록된 답변이 없습니다.");
 				}
 			} else if (boardDTO == null) {
 				CSBoardController.boardSelectByNo(boardNo);
@@ -269,24 +278,32 @@ public class ConsultationDetailView {
 	public static void inputDeleteReply() {
 		
 		try {
-			System.out.print("\n 답변을 삭제할 게시물 번호를 입력해주세요.");
+			System.out.print("\n 답변을 삭제할 '게시물 번호'를 입력해주세요.");
 			int boardNo = Integer.parseInt(sc.nextLine());
 			CSBoardDTO boardDTO = boardDAO.boardSelectByNo(boardNo);
 			if (boardDTO != null) {
 				if (boardDTO.getReplyList().size() != 0) {
 					CSBoardController.boardSelectByNo(boardNo);
-					System.out.print(" 검색된 게시글의 답변을 삭제하시겠습니까? ( 1:예 / 2:아니오 ) ");
+					System.out.print(" 검색된 게시물의 답변을 삭제하시겠습니까? ( 1:예 / 2:아니오 ) ");
 					int choice = Integer.parseInt(sc.nextLine());
 					if (choice == 1) {
-						System.out.print(" 삭제할 댓글 번호 : ");
+						System.out.print(" 삭제할 답변 번호 : ");
 						int no = Integer.parseInt(sc.nextLine());
-						CSBoardController.replyDeleteByNo(no);
-						CSBoardController.boardSelectByNo(boardNo);
+						
+						Iterator<CSReplyDTO> replyIr = boardDTO.getReplyList().iterator();
+						while(replyIr.hasNext()) {
+							CSReplyDTO replyDTO = replyIr.next();
+							if(replyDTO.getReplyNo()==no) {
+								CSBoardController.replyDeleteByNo(no);
+								CSBoardController.boardSelectByNo(boardNo);
+							}
+						}
+						System.out.println(" 검색된 게시물에 작성된 답변이 아닙니다. 답변 번호를 확인하세요.");
 					} else {
 						System.out.println(" 답변 삭제가 취소되었습니다.");
 					}
 				} else if (boardDTO.getReplyList().size() == 0) {
-					System.out.println(" " + boardNo + "번 게시글에는 등록된 답변이 없습니다.");
+					System.out.println(" " + boardNo + "번 게시물에는 등록된 답변이 없습니다.");
 				}
 			} else if (boardDTO == null) {
 				CSBoardController.boardSelectByNo(boardNo);
