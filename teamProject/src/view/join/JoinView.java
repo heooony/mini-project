@@ -13,7 +13,7 @@ public class JoinView {
 	public void joinStart() {
 				String id = null;
 				System.out.println("┌───────────────────────────────────┐");
-				System.out.println("              JOIN US                " );       
+				System.out.println("            🍇 JOIN US 🍇                " );       
 				System.out.println("────────────────────────────────────");
 				System.out.println("       Customer's Information        " );       
 				System.out.println("└───────────────────────────────────┘");

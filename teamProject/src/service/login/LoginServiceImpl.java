@@ -15,7 +15,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Customer checkLogin(String id, String password) throws SQLException{
 		Customer customer=logindao.checkLogin(id, password);
-		if(customer == null) throw new SQLException(id+"는 등록되지않은 정보입니다. 다시 시도해주세요^^");
+		if(customer == null) throw new SQLException("  잘못된 정보입니다 다시 시도해주세요.");
 		Session session = new Session("user");
 		session.setAttribute("id", id);
 		SessionSet sessionSet = SessionSet.getInstance();

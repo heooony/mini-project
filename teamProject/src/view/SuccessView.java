@@ -84,34 +84,53 @@ public class SuccessView {
 	}
 
 	public static void printReservationList(List<Reservation> list) {
-		System.out.println("===============예약 현황===============");
+		System.out.println();
+		System.out.println("┌──────────────────────────────────────────────────┐");
+		System.out.println("             🍇 Reservation List 🍇                 " );       
+		System.out.println("───────────────────────────────────────────────────");  
+	
+
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getCustomer().getCstmName()+ "고객님의 반려견 " + list.get(i).getCustomer().getPname() + " 예약 대기상태입니다.");
-			System.out.println("전화번호 : " + list.get(i).getCustomer().getTel());
-			System.out.println("예약시간 : " + list.get(i).getResvTime());
-			System.out.println("예약내용 : " + list.get(i).getGrmType());
-			System.out.println("예약금액 : " + list.get(i).getPay());
-			System.out.println("예약번호 : " + list.get(i).getResvno());
+			System.out.println("        전화번호 : " + list.get(i).getCustomer().getTel());
+			System.out.println("        예약시간 : " + list.get(i).getResvTime());
+			System.out.println("        예약내용 : " + list.get(i).getGrmType());
+			System.out.println("        예약금액 : " + list.get(i).getPay());
+			System.out.println("        예약번호 : " + list.get(i).getResvno());
+			System.out.println("└──────────────────────────────────────────────────┘");
 			System.out.println();
 			
 		}
 	}
 
 	public static void printMembership(List<Grades> list) {
-		System.out.println("==========멤버십 정보==========");
-		System.out.println("등급   |   승급 조건(결제횟수)   |   마일리지 적립(%)");
-		for(int i = 1; i < list.size(); i++) {
-			System.out.println(list.get(i).getGrade() + " | " + list.get(i).getCrtMile() + "회 " + " | " + list.get(i).getdiscount() + "%");
-		}
+		System.out.println();
+		System.out.println();
+		System.out.println("┌───────────────────────────────────────────────────────┐");
+		System.out.println("            🍇 Membership Information 🍇                 " );       
+		System.out.println(" ───────────────────────────────────────────────────────");  
+		System.out.println("       등급      |       승급조건       |   마일리지 적립(%)");
+		System.out.println("      Bronze              5회                  1%");
+		System.out.println("      Silver             10회                  2%");
+		System.out.println("      Gold               20회                  3%");
+		System.out.println("└───────────────────────────────────────────────────────┘");
 	}
 
 	public static void printMembershipCard(Customer customer) {
-		System.out.println("┌───────────────");
-		System.out.println("│MEMBERSHIP                    " + customer.getPname());
-		System.out.println("│");
-		System.out.println("│  " + customer.getCardno() );
-		System.out.println("│");
-		System.out.println("│  " + customer.getCstmName() + "\t\t" + customer.getGrade());
-		System.out.println("└───────────────");
+		System.out.println();
+		System.out.println();
+		System.out.println("┌──────────────────────────────────────────────────┐");
+		System.out.println("              PodoSalon Membership card       " );
+		System.out.println();
+		System.out.println("    ,:':,...,:':,         Owner          "+ customer.getPname());
+		System.out.println("    ,:' ・ 👅 ・   ':,       CardNo          " + customer.getCardno() );
+		System.out.println("   ;:　　  　      :;       Membership     "+ customer.getGrade());
+		System.out.println("   ':............:'       Name            " + customer.getCstmName()); 
+		System.out.println("└──────────────────────────────────────────────────┘");
+		System.out.println();
+		System.out.println();
+	
+		
+		
 	}
 }
