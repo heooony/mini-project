@@ -102,7 +102,7 @@ public class SuccessView {
 	 * 
 	 */
 	public static void printCustomerInform(Customer customer) {
-		System.out.println(customer);
+		System.out.println(customer); 
 		
 	}
 

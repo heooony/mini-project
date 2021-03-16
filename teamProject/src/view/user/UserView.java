@@ -34,7 +34,8 @@ public class UserView {
 				
 			case 0 :
 				System.out.println("서비스 메인으로 돌아갑니다");
-				return;
+				SubView.printSubView();
+				break;
 				default : 
 					System.out.println("메뉴 선택 오류입니다. 다시 선택해주세요^^");
 			}
