@@ -49,7 +49,7 @@ public class UserView {
 		System.out.println("┌──────────────────────────────────────────────────────┐");
 		System.out.println("             🍇 Customer's Information 🍇             " );       
 		System.out.println("└──────────────────────────────────────────────────────┘");
-		System.out.println("           고객님의 회원 정보를 다시 한 번 입력해주세요.");
+		System.out.println("          회원정보 확인을 위해 다시 한번 로그인 해주세요.");
 		System.out.print("              ID : ");
 		String id =sc.nextLine();
 		System.out.print("              Password : ");
@@ -98,7 +98,8 @@ public class UserView {
 		}else if(confirm.equals("no")){
 			System.out.println();
 			System.out.println("         더 나은 서비스를 위해 노력하겠습니다 ^^");
-			System.out.println();
+			System.out.println("다시 서비스로 돌아가려면 Enter를 눌러주세요.");
+			sc.nextLine();
 			SubView.printSubView();
 		}
 			return;

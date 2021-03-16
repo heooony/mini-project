@@ -34,6 +34,7 @@ public class AdminService {
 	public String getAuth() throws SQLException {
 		String grade = adminDAO.getAuth();
 		if(grade.equals("관리자")) return grade;
-		else throw new SQLException("관리자가 아닙니다.");
+		else throw new SQLException('\n'+"관리자가 아닙니다."+'\n');
+		
 	}
 }

@@ -1,6 +1,7 @@
 package controller.user;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import dto.Customer;
 import service.user.UserService;
@@ -8,6 +9,7 @@ import service.user.UserServiceImpl;
 import view.FailView;
 import view.SuccessView;
 import view.menu.MainView;
+import view.user.UserView;
 
 public class UserController {
 
@@ -37,6 +39,11 @@ public class UserController {
 			userService.modifyMyInform(password, pname, pweight);
 			System.out.println();
 			SuccessView.printMessage("           "+pname+"의 정보가 성공적으로 수정되었습니다.");
+			System.out.println(); 
+			System.out.print("서비스로 돌아가려면 Enter를 눌러주세요.");
+	         Scanner s = new Scanner(System.in);
+	         s.nextLine();
+	         UserView.printUser();
 		} catch (SQLException e) {
 			FailView.printMessage("        회원정보수정 실패. 상담게시판이나 유선 연락 바랍니다.");
 		}

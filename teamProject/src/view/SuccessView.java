@@ -70,7 +70,8 @@ public class SuccessView {
 	public static void allPriceListPrint(List<Price> list) {
 		System.out.println();
 		System.out.println("┌─────────────────────────────────────────────────────┐");
-		System.out.println("                    🍇 Basic Price 🍇                 " );       
+		System.out.println("                    🍇 Basic Price 🍇                 " );
+		System.out.println("    2kg 기준의 가격표이며, 견종과 몸무게에 따라 가격은 조정됩니다^^  " );
 		System.out.println(" ───────────────────────────────────────────────────── ");  
 		for(Price price : list) {
 			System.out.println("    Type   |     Basic    |    Special   |    Time    ");
@@ -91,9 +92,10 @@ public class SuccessView {
 			System.out.println(" ───────────────────────────────────────────────────── ");
 		}	System.out.println("└─────────────────────────────────────────────────────┘");
 			System.out.println();
-	         System.out.println("Enter를 입력하세요.");
+	         System.out.print("서비스로 돌아가려면 Enter를 눌러주세요.");
 	         Scanner s = new Scanner(System.in);
 	         s.nextLine();
+	         System.out.println();
 		
 	}
 
@@ -103,7 +105,10 @@ public class SuccessView {
 	 */
 	public static void printCustomerInform(Customer customer) {
 		System.out.println(customer); 
-		
+		System.out.println();
+		System.out.print("서비스로 돌아가려면 Enter를 눌러주세요.");
+		Scanner s = new Scanner(System.in);
+        s.nextLine();
 	}
 
 	public static void printReservationList(List<Reservation> list) {
@@ -137,6 +142,10 @@ public class SuccessView {
 		System.out.println("      Silver             10회                  2%");
 		System.out.println("      Gold               20회                  3%");
 		System.out.println("└───────────────────────────────────────────────────────┘");
+		System.out.println(); 
+		System.out.print("서비스로 돌아가려면 Enter를 눌러주세요.");
+		 Scanner s = new Scanner(System.in);
+		 s.nextLine();
 	}
 
 	public static void printMembershipCard(Customer customer) {

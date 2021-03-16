@@ -31,10 +31,8 @@ public class AdminView {
 	
 	public static void getAuth() {
 		if(controller.getAuth() == 1) {
-			System.out.println("관리자님 환영합니다.");
+			System.out.println('\n'+"관리자님 환영합니다."+'\n');
 			AdminView.printAdminView();
-		} else {
-			System.out.println("관리자가 아닙니다.");
 		}
 	}
 }

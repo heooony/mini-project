@@ -23,9 +23,7 @@ public class MembershipController {
 			SuccessView.printMembership(list);
 			
 			System.out.println();
-			System.out.println("Enter를 입력하세요.");
-			Scanner s = new Scanner(System.in);
-			s.nextLine();
+			
 			
 		} catch(SQLException e) {
 			FailView.printMessage(e.getMessage());

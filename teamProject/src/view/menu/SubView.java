@@ -33,10 +33,12 @@ public class SubView {
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
 				case 6:
-					System.out.println("로그아웃 됩니다.");
+					System.out.println("                   로그아웃 되었습니다.");
+					System.out.println();
 					SessionSet ss = SessionSet.getInstance();
 					ss.remove(ss.get("user"));
-					return;
+					MainView.printMenu();
+					break;
 				case 0: AdminView.getAuth(); break;
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
 			}

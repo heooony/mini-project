@@ -23,7 +23,6 @@ public class LoginController {
 		try {
 			Customer customer=service.checkLogin(id,password);	
 			SuccessView.printMessage("         로그인 성공.");
-			SuccessView.printMessage("  원하시는 서비스를 선택해주세요 ^^");
 			System.out.println();
 			System.out.println();
 			SubView.printSubView();
