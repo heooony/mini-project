@@ -14,7 +14,7 @@ public class SuccessView {
 	public static void printPrice(List<Price> price) {
 		System.out.println();
 		System.out.println("┌────────────────────────────────────────────────────┐");
-		System.out.println("                  🍇 Pesonal Price 🍇             " );       
+		System.out.println("                  🍇 Personal Price 🍇             " );       
 		System.out.println(" ──────────────────────────────────────────────────── ");  
 		System.out.println("          입력하신 몸무게에 맞추어 산정된 가격입니다 ^^");
 		System.out.println("    Type   |     Basic    |    Special   |    Time    ");

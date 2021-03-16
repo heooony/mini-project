@@ -18,6 +18,7 @@ public class LoginServiceImpl implements LoginService {
 		if(customer == null) throw new SQLException("  잘못된 정보입니다 다시 시도해주세요.");
 		Session session = new Session("user");
 		session.setAttribute("id", id);
+		session.setAttribute("password", password);
 		SessionSet sessionSet = SessionSet.getInstance();
 		sessionSet.add(session);
 		return customer;

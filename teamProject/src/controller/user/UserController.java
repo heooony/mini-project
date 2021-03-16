@@ -6,6 +6,7 @@ import java.util.Scanner;
 import dto.Customer;
 import service.user.UserService;
 import service.user.UserServiceImpl;
+import session.SessionSet;
 import view.FailView;
 import view.SuccessView;
 import view.menu.MainView;
@@ -58,9 +59,11 @@ public class UserController {
 			userService.deleteMyInform(id, password);
 			SuccessView.printMessage("         "+id+"회원님의 탈퇴가 완료되었습니다.");
 			System.out.println("           그동안 이용해주셔서 감사합니다.");
+			SessionSet ss = SessionSet.getInstance();
+            ss.remove(ss.get("user"));
 			MainView.printMenu();
 		} catch (SQLException e) {
-			FailView.printMessage("          회원탈퇴실패. 관리자에게 문의 바랍니다.");
+			FailView.printMessage("                     회원탈퇴실패.");
 			FailView.printMessage(e.getMessage());
 		}
 		

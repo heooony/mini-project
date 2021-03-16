@@ -101,7 +101,8 @@ public class UserView {
 			System.out.println("다시 서비스로 돌아가려면 Enter를 눌러주세요.");
 			sc.nextLine();
 			SubView.printSubView();
-		}
+		}else
+			System.out.println("올바른 입력값이 아닙니다. 다시 시도해주세요."+'\n');
 			return;
 		
 	}
