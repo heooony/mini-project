@@ -2,6 +2,7 @@ package view.menu;
 
 import java.util.Scanner;
 
+import session.SessionSet;
 import view.admin.AdminView;
 import view.consultation.ConsultationView;
 import view.membership.MembershipView;
@@ -20,7 +21,7 @@ public class SubView {
 			System.out.println("                  3. 내 정보 관리");
 			System.out.println("                  4. 멤버십 서비스 안내");
 			System.out.println("                  5. 상담");
-			System.out.println("                  6. 이전으로");
+			System.out.println("                  6. 로그아웃");
 			System.out.println("                  0. 관리자모드");
 			System.out.println("└──────────────────────────────────────────────────────┘");
 			System.out.print("서비스 번호를 선택해주세요 >");
@@ -31,9 +32,11 @@ public class SubView {
 				case 3: UserView.printUser();
 				case 4: MembershipView.membership(); break;
 				case 5: ConsultationView.csBoardSelect(); break;
-				case 6: MainView.printMenu();
-				System.out.println();
-				System.out.println();break;
+				case 6:
+					System.out.println("로그아웃 됩니다.");
+					SessionSet ss = SessionSet.getInstance();
+					ss.remove(ss.get("user"));
+					return;
 				case 0: AdminView.getAuth(); break;
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
 			}

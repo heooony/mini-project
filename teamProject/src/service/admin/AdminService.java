@@ -33,8 +33,7 @@ public class AdminService {
 
 	public String getAuth() throws SQLException {
 		String grade = adminDAO.getAuth();
-		if(grade == null) throw new SQLException("현재 로그인 정보를 불러올 수 없습니다.");
-		else if(grade.equals("관리자")) return grade;
-		return null;
+		if(grade.equals("관리자")) return grade;
+		else throw new SQLException("관리자가 아닙니다.");
 	}
 }
