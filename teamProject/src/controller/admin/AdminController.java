@@ -7,6 +7,7 @@ import dto.Reservation;
 import service.admin.AdminService;
 import view.FailView;
 import view.SuccessView;
+import view.admin.AdminView;
 import view.admin.ReservationListView;
 
 public class AdminController {
@@ -25,6 +26,25 @@ public class AdminController {
 		try {
 			service.setReservationState(num, state);
 			SuccessView.printMessage("성공적으로 " + state + "상태로 변경하였습니다.");
+		} catch(SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
+
+	public void getReservationCalendar(String calendar) {
+		try {
+			List<Reservation> list = service.getReservationCalendar(calendar);
+			SuccessView.printReservation(list);
+		} catch(SQLException e) {
+			FailView.printMessage(e.getMessage());
+		}
+	}
+
+	public void getAuth() {
+		try {
+			service.getAuth();
+			System.out.println("관리자님 환영합니다.");
+			AdminView.printAdminView();
 		} catch(SQLException e) {
 			FailView.printMessage(e.getMessage());
 		}

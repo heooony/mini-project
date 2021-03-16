@@ -34,7 +34,7 @@ public class SubView {
 				case 6: MainView.printMenu();
 				System.out.println();
 				System.out.println();break;
-				case 0: AdminView.printAdminView(); break;
+				case 0: AdminView.getAuth(); break;
 				default: System.out.println(menuChoice + "번은 없는 메뉴입니다."); break;
 			}
 		}

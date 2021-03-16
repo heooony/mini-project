@@ -11,6 +11,7 @@ import java.util.Properties;
 import dao.DBUtil;
 import dto.Customer;
 import dto.Reservation;
+import session.SessionSet;
 
 public class AdminDAO {
 	private Properties proFile = DBUtil.getProfile();
@@ -89,5 +90,46 @@ public class AdminDAO {
 			DBUtil.dbClose(null, ps, rs);
 		}
 		return list;
+	}
+
+	public List<Reservation> getReservationCalendar(String calendar) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Reservation> list = new ArrayList<Reservation>();
+		String sql = "SELECT TO_CHAR(RESV_TIME, 'YYYY-MM-DD HH24') || '시', RESV_STATE, GRM_TYPE, PAY FROM RESERVATION JOIN CUSTOMER USING(CRD_NO) WHERE TO_CHAR(RESV_TIME, 'YYYYMMDD') = ? ORDER BY RESV_TIME";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, calendar);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Reservation(null, 0, rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+	public String getAuth() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String grade = null;
+		String sql = "select grade from customer where id = ?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			SessionSet ss = SessionSet.getInstance();
+			ps.setString(1, (String)ss.get("user").getAttribute("id"));
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				grade = rs.getString("grade");
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return grade;
 	}
 }
