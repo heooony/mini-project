@@ -35,7 +35,7 @@ public class ReservationController {
 		return null;
 	}
 
-	public List<Price> getPrice(int weight) {
+	public List<Price> getPrice(double weight) {
 		List<Price> list = null;
 		try {
 			list = new ArrayList<Price>();

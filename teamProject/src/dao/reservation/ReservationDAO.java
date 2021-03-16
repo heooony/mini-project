@@ -41,7 +41,7 @@ public class ReservationDAO {
 		return list;
 	}
 
-	public List<Price> getPrice(int weight) {
+	public List<Price> getPrice(double weight) {
 		Connection con = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -51,7 +51,9 @@ public class ReservationDAO {
 			con = DBUtil.getConnection();
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
-			int plusPrice = (weight - 2) * 10000;
+			int plusPrice = (int)weight >= 2 ? ((int)weight - 2) * 10000 : -10000;
+			System.out.println((int)weight);
+			System.out.println(plusPrice);
 			while (rs.next()) {
 				Price price = new Price(rs.getString(1), rs.getInt(2) + plusPrice, rs.getInt(3) + plusPrice,
 						rs.getInt(4));

@@ -42,7 +42,7 @@ public class ReservationServiceImpl {
 		return timeList;
 	}
 
-	public List<Price> getPrice(int weight) throws SQLException {
+	public List<Price> getPrice(double weight) throws SQLException {
 		List<Price> list = new ArrayList<Price>();
 		list = reservationDAO.getPrice(weight);
 		if (list.size() == 0)

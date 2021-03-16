@@ -22,6 +22,7 @@ public class MembershipController {
 			List<Grades> list = service.getMembership();
 			SuccessView.printMembership(list);
 			
+			System.out.println();
 			System.out.println("Enter를 입력하세요.");
 			Scanner s = new Scanner(System.in);
 			s.nextLine();

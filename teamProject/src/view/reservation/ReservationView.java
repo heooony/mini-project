@@ -24,7 +24,7 @@ public class ReservationView {
 		int price = 0;
 		
 		while(true) {
-			list = controller.getPrice(3);
+			list = controller.getPrice(customer.getPweight());
 			System.out.println("원하시는 종류를 선택하세요.");
 			System.out.println("가격은 반려견의 몸무게에 맞게 자동 산정됩니다.");
 			System.out.print("입력 > ");
