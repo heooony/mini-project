@@ -1,9 +1,7 @@
 package view.consultation;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 import controller.CSBoardController;
 import dao.CSBoardDAO;
@@ -33,9 +31,9 @@ public class ConsultationDetailView {
 			System.out.print("서비스 번호를 입력해주세요 > ");
 			int no = Integer.parseInt(sc.nextLine());
 			switch (no) {
-			case 1:inputInsertBoard();break;
-			case 2:inputUpdateBoard();break;
-			case 3:inputDeleteBoardByManager();break;
+			case 1:inputInsertBoard(); ConsultationView.returnMenu(); break;
+			case 2:inputUpdateBoard(); ConsultationView.returnMenu(); break;
+			case 3:inputDeleteBoardByManager(); ConsultationView.returnMenu(); break;
 			case 9:return;
 			}
 		}
@@ -57,9 +55,9 @@ public class ConsultationDetailView {
 			System.out.print("서비스 번호를 입력해주세요 > ");
 			int no = Integer.parseInt(sc.nextLine());
 			switch (no) {
-			case 1:inputInsertBoard();break;
-			case 2:inputUpdateBoard();break;
-			case 3:inputDeleteBoard();break;
+			case 1:inputInsertBoard(); ConsultationView.returnMenu(); break;
+			case 2:inputUpdateBoard(); ConsultationView.returnMenu(); break;
+			case 3:inputDeleteBoard(); ConsultationView.returnMenu(); break;
 			case 9:return;
 			}
 		}
@@ -81,9 +79,9 @@ public class ConsultationDetailView {
 			System.out.print("서비스 번호를 입력해주세요 > ");
 			int no = Integer.parseInt(sc.nextLine());
 			switch (no) {
-			case 1:inputInsertReply();break;
-			case 2:inputUadateReply();break;
-			case 3:inputDeleteReply();break;
+			case 1:inputInsertReply(); ConsultationView.returnMenu(); break;
+			case 2:inputUadateReply(); ConsultationView.returnMenu(); break;
+			case 3:inputDeleteReply(); ConsultationView.returnMenu(); break;
 			case 9:return;
 			}
 		}
@@ -253,7 +251,7 @@ public class ConsultationDetailView {
 					CSBoardController.boardSelectByNo(boardNo);
 					System.out.print(" 검색된 게시물의 답변을 수정하시겠습니까? ( 1:예 / 2:아니오 ) ");
 					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
+					while (choice == 1) {
 						System.out.print(" 수정할 답변 번호 : ");
 						int no = Integer.parseInt(sc.nextLine());
 
@@ -266,12 +264,12 @@ public class ConsultationDetailView {
 								CSReplyDTO reply = new CSReplyDTO(no, content);
 								CSBoardController.replyUpdateByNo(reply);
 								CSBoardController.boardSelectByNo(boardNo);
+								return;
 							}
 						}
 						System.out.println(" 검색된 게시글에 작성된 답변이 아닙니다. 답변 번호를 확인하세요.");
-					} else {
-						System.out.println(" 답변 수정이 취소되었습니다.");
 					}
+					System.out.println(" 답변 수정이 취소되었습니다.");
 				} else if (boardDTO.getReplyList().size() == 0) {
 					System.out.println(" " + boardNo + "번 게시물에는 등록된 답변이 없습니다.");
 				}
@@ -301,7 +299,7 @@ public class ConsultationDetailView {
 					CSBoardController.boardSelectByNo(boardNo);
 					System.out.print(" 검색된 게시물의 답변을 삭제하시겠습니까? ( 1:예 / 2:아니오 ) ");
 					int choice = Integer.parseInt(sc.nextLine());
-					if (choice == 1) {
+					while (choice == 1) {
 						System.out.print(" 삭제할 답변 번호 : ");
 						int no = Integer.parseInt(sc.nextLine());
 						
@@ -311,12 +309,12 @@ public class ConsultationDetailView {
 							if(replyDTO.getReplyNo()==no) {
 								CSBoardController.replyDeleteByNo(no);
 								CSBoardController.boardSelectByNo(boardNo);
+								return;
 							}
 						}
 						System.out.println(" 검색된 게시물에 작성된 답변이 아닙니다. 답변 번호를 확인하세요.");
-					} else {
-						System.out.println(" 답변 삭제가 취소되었습니다.");
 					}
+					System.out.println(" 답변 삭제가 취소되었습니다.");
 				} else if (boardDTO.getReplyList().size() == 0) {
 					System.out.println(" " + boardNo + "번 게시물에는 등록된 답변이 없습니다.");
 				}

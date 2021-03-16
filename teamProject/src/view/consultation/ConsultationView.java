@@ -49,7 +49,7 @@ public class ConsultationView {
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
-				case 1 : CSBoardController.boardSelectByAll(); break;
+				case 1 : CSBoardController.boardSelectByAll(); returnMenu(); break;
 				case 2 : searchMenu(); break;
 				case 3 : ConsultationDetailView.dmlMenuByManager(); break;
 				case 4 : ConsultationDetailView.replyDmlMenu(); break;
@@ -75,7 +75,7 @@ public class ConsultationView {
 			System.out.println(" ────────────────────────────────────────");
 			System.out.println("             1. 전체 게시글 조회");
 			System.out.println("             2. 검색하기 ");
-			System.out.println("             3. 질문 하기");
+			System.out.println("             3. 질문하기");
 			System.out.println("             4. 가격표 조회");
 			System.out.println("             9. 이전으로");
 			System.out.println("└────────────────────────────────────────┘");
@@ -83,10 +83,10 @@ public class ConsultationView {
 					try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
-				case 1 : CSBoardController.boardSelectByAll(); break;
+				case 1 : CSBoardController.boardSelectByAll(); returnMenu(); break;
 				case 2 : searchMenu(); break;
-				case 3 : ConsultationDetailView.dmlMenu(); break;
-				case 4 : CSBoardController.priceSelectAll(); break;
+				case 3 : ConsultationDetailView.dmlMenu();break;
+				case 4 : CSBoardController.priceSelectAll(); returnMenu(); break;
 				case 9 : 
 					System.out.println(" 상담페이지를 닫습니다."); return;
 				default : System.out.println(" 다시 입력해주세요.");
@@ -130,8 +130,7 @@ public class ConsultationView {
 		try {
 			System.out.print(" 글번호 검색 : ");
 			String boardNo = sc.nextLine();
-
-			CSBoardController.boardSelectByNo(Integer.parseInt(boardNo));
+			CSBoardController.boardSelectByNo(Integer.parseInt(boardNo)); returnMenu();
 		} catch (NumberFormatException e) {
 			System.out.println(" 글번호는 숫자만 입력해주세요.");
 			System.out.print(" 다시 시도하시겠습니까? ( 1:예 / 2:아니오 ) ");
@@ -148,7 +147,7 @@ public class ConsultationView {
 	public static void inputBoardBySubject() {
 		System.out.print(" 제목 검색 : ");
 		String word = sc.nextLine();
-		CSBoardController.boardSelectBySubject(word);
+		CSBoardController.boardSelectBySubject(word); returnMenu();
 	}
 	
 	/**
@@ -157,7 +156,7 @@ public class ConsultationView {
 	public static void inputBoardByWriter() {
 		System.out.print(" 작성자 검색 : ");
 		String word = sc.nextLine();
-		CSBoardController.boardSelectByWriter(word);
+		CSBoardController.boardSelectByWriter(word); returnMenu();
 	}
 	
 	/**
@@ -166,7 +165,17 @@ public class ConsultationView {
 	public static void inputBoardByContent() {
 		System.out.print(" 내용 검색 : ");
 		String word = sc.nextLine();
-		CSBoardController.boardSelectByContent(word);
+		CSBoardController.boardSelectByContent(word); returnMenu();
+	}
+	
+	/**
+	 * 결과 출력 후 이전 메뉴로 돌아가기위해 호출되는 메소드
+	 * */
+	public static void returnMenu() {
+		System.out.println();
+		System.out.print(" Enter를 입력하시면 이전 메뉴로 돌아갑니다.");
+		Scanner sc = new Scanner(System.in);
+		sc.nextLine();
 	}
 }
 
