@@ -5,15 +5,9 @@ import java.util.List;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
-import dto.Customer;
 import dto.Price;
 
 public interface CSBoardDAO {
-	
-	/**
-	 * ID로 회원 검색
-	 * */
-	Customer searchUserByID(String id) throws SQLException;
 	
 	/**
 	 * 레코드 전체검색

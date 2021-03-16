@@ -3,22 +3,18 @@ package view.consultation;
 import java.sql.SQLException;
 import java.util.Scanner;
 import controller.CSBoardController;
-import dao.CSBoardDAO;
-import dao.CSBoardDAOImpl;
-import session.SessionSet;
+import dao.admin.AdminDAO;
 
 public class ConsultationView {
 	static Scanner sc = new Scanner(System.in);
-	private static CSBoardDAO boardDAO = new CSBoardDAOImpl();
+	private static AdminDAO adminDAO = new AdminDAO();
 	
-	// 관리자는 관리자 전용 메뉴로 일반회원은 회원 전용 메뉴로
+	/**
+	 * 멤버의 등급(Grade)이 '관리자'인 경우 관리자 메뉴로, 그 외에는 일반 메뉴로.
+	 */
 	public static void csBoardSelect() {
-		
-		SessionSet ss = SessionSet.getInstance();
-		String id = (String)ss.get("user").getAttribute("id");
 		try {
-			String grade = boardDAO.searchUserByID(id).getGrade();
-			if (grade.equals("관리자")) {
+			if (adminDAO.getAuth().equals("관리자")) {
 				menuChoiceManager();
 			} else {
 				menuChoiceUser();
@@ -174,7 +170,6 @@ public class ConsultationView {
 	public static void returnMenu() {
 		System.out.println();
 		System.out.print(" Enter를 입력하시면 이전 메뉴로 돌아갑니다.");
-		Scanner sc = new Scanner(System.in);
 		sc.nextLine();
 	}
 }

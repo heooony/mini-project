@@ -10,42 +10,12 @@ import java.util.Properties;
 
 import dto.CSBoardDTO;
 import dto.CSReplyDTO;
-import dto.Customer;
 import dto.Price;
 
 public class CSBoardDAOImpl implements CSBoardDAO {
 	
 	private Properties proFile = DBUtil.getProfile();
 	
-	/**
-	 * ID로 회원 검색
-	 * */
-	@Override
-	public Customer searchUserByID(String id) throws SQLException {
-		
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Customer customer = null;
-		String sql = proFile.getProperty("user.searchByID");
-		
-		try {
-			con = DBUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
-			
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				
-				customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
-						rs.getInt(6), rs.getString(7), rs.getDouble(8), rs.getString(9), rs.getString(10));
-			}
-		} finally {
-			DBUtil.dbClose(con, ps, rs);
-		}		
-		return customer;
-	}
-
 	/**
 	 * 전체 게시글 출력
 	 * */
