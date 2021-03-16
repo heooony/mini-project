@@ -42,9 +42,9 @@ public class CSBoardController {
 	/**
 	 * 제목에 특정 문자열이 포함된 게시물 검색
 	 * */
-	public static void boardSelectBySubject(String word) {
+	public static void boardSelectBySubject(String subject) {
 		try {
-			List<CSBoardDTO> list = boardService.boardSelectBySubject(word);
+			List<CSBoardDTO> list = boardService.boardSelectBySubject(subject);
 			SuccessView.selectAllBoardPrint(list);
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
@@ -54,9 +54,9 @@ public class CSBoardController {
 	/**
 	 * 작성자명에 특정 문자열이 포함된 게시물 검색
 	 * */
-	public static void boardSelectByWriter(String word) {
+	public static void boardSelectByWriter(String writer) {
 		try {
-			List<CSBoardDTO> list = boardService.boardSelectByWriter(word);
+			List<CSBoardDTO> list = boardService.boardSelectByWriter(writer);
 			SuccessView.selectAllBoardPrint(list);
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
@@ -66,9 +66,9 @@ public class CSBoardController {
 	/**
 	 * 내용에 특정 문자열이 포함된 게시물 검색
 	 * */
-	public static void boardSelectByContent(String word) {
+	public static void boardSelectByContent(String content) {
 		try {
-			List<CSBoardDTO> list = boardService.boardSelectByContent(word);
+			List<CSBoardDTO> list = boardService.boardSelectByContent(content);
 			SuccessView.selectAllBoardPrint(list);
 		} catch (SQLException e) {
 			FailView.printMessage(e.getMessage());
