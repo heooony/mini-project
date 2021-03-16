@@ -52,8 +52,7 @@ public class ReservationDAO {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			int plusPrice = (int)weight >= 2 ? ((int)weight - 2) * 10000 : -10000;
-			System.out.println((int)weight);
-			System.out.println(plusPrice);
+
 			while (rs.next()) {
 				Price price = new Price(rs.getString(1), rs.getInt(2) + plusPrice, rs.getInt(3) + plusPrice,
 						rs.getInt(4));
