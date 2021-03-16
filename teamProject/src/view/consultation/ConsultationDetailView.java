@@ -114,9 +114,11 @@ public class ConsultationDetailView {
 		}
 	}
 
+	
 	/**
 	 * 게시글 수정하기
 	 */
+	
 	public static void inputUpdateBoard() {
 		SessionSet ss = SessionSet.getInstance();
 		String writer = (String)ss.get("user").getAttribute("id");
@@ -148,13 +150,15 @@ public class ConsultationDetailView {
 		}
 	}
 	
+	
 	/**
 	 * 게시글 삭제하기
 	 */
+	
 	public static void inputDeleteBoard() {
 		SessionSet ss = SessionSet.getInstance();
 		String writer = (String)ss.get("user").getAttribute("id");
-		try {
+		try { 
 			List<CSBoardDTO> list = boardDAO.boardSelectByWriter(writer);
 			if(list.size()!=0) {
 				CSBoardController.boardSelectByWriter(writer);
