@@ -48,7 +48,7 @@ public class UserView {
 		System.out.println("┌──────────────────────────────────────────────────────┐");
 		System.out.println("             🍇 Customer's Information 🍇             " );       
 		System.out.println("└──────────────────────────────────────────────────────┘");
-		System.out.println("회원 정보를 다시 한 번 입력해주세요.");
+		System.out.println("           고객님의 회원 정보를 다시 한 번 입력해주세요.");
 		System.out.print("              ID : ");
 		String id =sc.nextLine();
 		System.out.print("              Password : ");
@@ -57,22 +57,26 @@ public class UserView {
 	}
 	
 	public static void modifyingView() {
-		System.out.println();
-		System.out.println();
-		System.out.println("┌──────────────────────────────────────────────────────┐");
-		System.out.println("             🍇  Modifying Information 🍇             " );       
-		System.out.println("└──────────────────────────────────────────────────────┘");
-		System.out.println("               비밀번호를 다시 한번 입력해주세요^^");
-		System.out.print("              Password : ");
-		String password = sc.nextLine();
-		System.out.println("   반려견 정보 수정을 위해 등록하신 반려견 이름을 정확히 입력해주세요^^");
-		System.out.print("              반려견 이름 : ");
-		String pname =sc.nextLine();
-		System.out.print("          변경할 반려견의 몸무게를 입력해주세요 : ");
-		Double pweight = sc.nextDouble();
-		sc.nextLine();
-		UserController.modifyMyInform(password,pname,pweight);
-	}
+		try {
+			System.out.println();
+			System.out.println();
+			System.out.println("┌──────────────────────────────────────────────────────┐");
+			System.out.println("             🍇  Modifying Information 🍇             " );       
+			System.out.println("└──────────────────────────────────────────────────────┘");
+			System.out.println("               비밀번호를 다시 한번 입력해주세요^^");
+			System.out.print("              Password : ");
+			String password = sc.nextLine();
+			System.out.println("   반려견 정보 수정을 위해 등록하신 반려견 이름을 정확히 입력해주세요^^");
+			System.out.print("              반려견 이름 : ");
+			String pname =sc.nextLine();
+			System.out.print("          변경할 반려견의 몸무게를 입력해주세요 : ");
+			Double pweight = sc.nextDouble();
+			sc.nextLine();
+			UserController.modifyMyInform(password,pname,pweight);
+		}catch(Exception e) {
+			System.out.println("                 올바른 정보를 입력해주세요.");
+		}
+		}
 	
 	
 	public static void deleteView() {

@@ -18,11 +18,12 @@ public class LoginView {
 		while(true) {
 			System.out.println("┌─────────────────────────────┐");
 			System.out.println("         🍇 LOGIN 🍇          " );         
-			System.out.println("└─────────────────────────────┘");
+			System.out.println(" ───────────────────────────── ");
 				System.out.print("      ID  : ");
 				String id = sc.nextLine();
 				System.out.print("      PW  : ");
 				String password = sc.nextLine();
+				System.out.println("└─────────────────────────────┘");
 				controller.checkLogin(id, password);
 				
 		}

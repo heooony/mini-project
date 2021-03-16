@@ -4,8 +4,8 @@ package dto;
 public class Price {
 
 	String grmType; //미용타입
-	int bCost;      //일반비용
-	int spcCost;    //특수비용
+	int bCost;      //일반비용가위컷
+	int spcCost;    //특수비용 목욕
 	int grmTimes;    //소요시간
 
 	public Price() {}
@@ -51,7 +51,7 @@ public class Price {
 	
 	@Override
 	public String toString() {
-		return " | "+grmType+" | "+bCost+"원 | "+spcCost+"원 | "+grmTimes+"시간";
+		return "    "+grmType+"        "+bCost+"원       "+spcCost+"원         "+grmTimes+"h";
 	}
 	
 }
