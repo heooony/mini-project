@@ -33,7 +33,7 @@ public class CSBoardServiceImpl implements CSBoardService {
 		CSBoardDTO boardDTO = boardDAO.boardSelectByNo(boardNo);
 		
 		if(boardDTO==null) {
-			throw new SQLException(" "+boardNo+"번에 해당하는 게시물이 존재하지 않습니다.");
+			throw new SQLException(" "+boardNo+"에 해당하는 정보가 없습니다.");
 		} 
 		return boardDTO;
 	}
@@ -45,7 +45,7 @@ public class CSBoardServiceImpl implements CSBoardService {
 	public List<CSBoardDTO> boardSelectBySubject(String subject) throws SQLException {
 		List<CSBoardDTO> list = boardDAO.boardSelectBySubject(subject);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+subject+"에 해당하는 게시글 제목은 없습니다.");
+			throw new SQLException(" "+subject+"에 해당하는 정보가 없습니다.");
 		}
 		return list;
 	}
@@ -57,7 +57,7 @@ public class CSBoardServiceImpl implements CSBoardService {
 	public List<CSBoardDTO> boardSelectByWriter(String writer) throws SQLException {
 		List<CSBoardDTO> list = boardDAO.boardSelectByWriter(writer);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+writer+"에 해당하는 작성자는 없습니다.");
+			throw new SQLException(" "+writer+"에 해당하는 정보가 없습니다.");
 		}
 		return list;
 	}
@@ -69,7 +69,7 @@ public class CSBoardServiceImpl implements CSBoardService {
 	public List<CSBoardDTO> boardSelectByContent(String content) throws SQLException {
 		List<CSBoardDTO> list = boardDAO.boardSelectByContent(content);
 		if(list==null || list.size()==0 || list.isEmpty()) {
-			throw new SQLException(" "+content+"에 해당하는 게시물이 존재하지 않습니다.");
+			throw new SQLException(" "+content+"에 해당하는 정보가 없습니다.");
 		}
 		return list;
 	}
