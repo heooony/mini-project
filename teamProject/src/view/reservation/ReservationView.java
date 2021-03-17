@@ -40,7 +40,7 @@ public class ReservationView {
 			System.out.print("입력 > ");
 			cal = sc.next();
 			
-			timeList = controller.getReservationState(cal);
+			timeList = controller.getReservationState(cal, type);
 			if(timeList == null || timeList.size() == 0) {
 				System.out.println("다시 선택해주세요.\n");
 				continue;	

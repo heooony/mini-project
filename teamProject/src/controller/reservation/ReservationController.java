@@ -24,13 +24,13 @@ public class ReservationController {
 		}
 	}
 	
-	public List<Integer> getReservationState(String calendar) {
+	public List<Integer> getReservationState(String calendar, String type) {
 		try {
-			List<Integer> timeList = service.getReservationState(calendar);
+			List<Integer> timeList = service.getReservationState(calendar, type);
 			if(timeList != null) return timeList;
 			else FailView.printMessage("예약가능한 시간이 존재하지 않습니다.");
 		} catch (Exception e) {
-				FailView.printMessage(e.getMessage());
+			FailView.printMessage(e.getMessage());
 		}
 		return null;
 	}

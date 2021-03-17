@@ -31,7 +31,8 @@ public class ReservationServiceImpl {
 		return instance;
 	}
 
-	public List<Integer> getReservationState(String calendar)throws SQLException {
+	public List<Integer> getReservationState(String calendar, String type) throws SQLException{
+		List<Integer> list = reservationDAO.getCalendar(calendar, type);
 		Calendar cal = Calendar.getInstance();
 	      String curCal = String.valueOf(cal.get(Calendar.YEAR));
 	      String m = String.valueOf(cal.get(Calendar.MONTH)+1);
@@ -44,7 +45,7 @@ public class ReservationServiceImpl {
 	      }
 	      curCal += m + d;
 	      if(Integer.parseInt(calendar) < Integer.parseInt(curCal)) throw new SQLException('\n'+"현재 시간보다 이전날짜입니다.");
-		List<Integer> list = reservationDAO.getCalendar(calendar);
+		
 		List<Integer> timeList = new ArrayList<Integer>();
 		for (int i = 11; i < 22; i++)
 			timeList.add(i);

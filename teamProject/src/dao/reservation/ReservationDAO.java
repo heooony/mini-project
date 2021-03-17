@@ -17,10 +17,11 @@ import session.SessionSet;
 
 public class ReservationDAO {
 	private Properties proFile = DBUtil.getProfile();
-	public List<Integer> getCalendar(String calendar) {
+	public List<Integer> getCalendar(String calendar, String type) throws SQLException{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		int times = 0;
 		String sql = proFile.getProperty("reservation.getCalendar");
 		List<Integer> list = new ArrayList<Integer>();
 		try {
@@ -28,19 +29,43 @@ public class ReservationDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, calendar);
 			rs = ps.executeQuery();
+			times = getType(con, type);
+			for(int i = 0; i < times -1; i++) {
+				list.add(21-i);
+			}
 			while (rs.next()) {
 				for(int i = 0; i < rs.getInt(2); i++) {
 					list.add(Integer.parseInt(rs.getString(1)) + i);
 				}
+				for(int i = 1; i < times; i++) {
+					list.add(Integer.parseInt(rs.getString(1)) - i);
+				}
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
 		return list;
 	}
-
+	
+	private int getType(Connection con, String type) throws SQLException{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int times = 0;
+		String sql = "select grm_times from price where grm_type = ?";
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, type);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				times = rs.getInt(1);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return times;
+	}
+	
 	public List<Price> getPrice(double weight) {
 		Connection con = null;
 		Statement st = null;
