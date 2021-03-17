@@ -102,7 +102,6 @@ public class ReservationDAO {
 			ps.setString(4, reservation.getGrmType());
 			ps.setInt(5, reservation.getPay());
 			setMileage(con, mileage, reservation.getCustomer().getCardno());
-			System.out.println(1);
 			ps.executeUpdate();
 		} finally {
 			DBUtil.dbClose(con, ps);

@@ -42,7 +42,7 @@ public class ReservationView {
 			
 			timeList = controller.getReservationState(cal);
 			if(timeList == null || timeList.size() == 0) {
-				System.out.println("해당 날짜에 예약할 수 있는 시간이 없습니다. 다시 선택해주세요.");
+				System.out.println("다시 선택해주세요.\n");
 				continue;	
 			}
 			

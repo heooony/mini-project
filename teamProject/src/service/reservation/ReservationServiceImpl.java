@@ -2,6 +2,7 @@ package service.reservation;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import dao.reservation.ReservationDAO;
@@ -30,7 +31,19 @@ public class ReservationServiceImpl {
 		return instance;
 	}
 
-	public List<Integer> getReservationState(String calendar) {
+	public List<Integer> getReservationState(String calendar)throws SQLException {
+		Calendar cal = Calendar.getInstance();
+	      String curCal = String.valueOf(cal.get(Calendar.YEAR));
+	      String m = String.valueOf(cal.get(Calendar.MONTH)+1);
+	      String d = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+	      if(cal.get(Calendar.MONTH)+1 < 10) {
+	         m = "0" + m;
+	      }
+	      if(cal.get(Calendar.DAY_OF_MONTH) < 10) {
+	         d = "0" + d;
+	      }
+	      curCal += m + d;
+	      if(Integer.parseInt(calendar) < Integer.parseInt(curCal)) throw new SQLException('\n'+"현재 시간보다 이전날짜입니다.");
 		List<Integer> list = reservationDAO.getCalendar(calendar);
 		List<Integer> timeList = new ArrayList<Integer>();
 		for (int i = 11; i < 22; i++)

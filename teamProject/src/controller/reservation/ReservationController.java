@@ -30,7 +30,7 @@ public class ReservationController {
 			if(timeList != null) return timeList;
 			else FailView.printMessage("예약가능한 시간이 존재하지 않습니다.");
 		} catch (Exception e) {
-			e.printStackTrace();
+				FailView.printMessage(e.getMessage());
 		}
 		return null;
 	}
