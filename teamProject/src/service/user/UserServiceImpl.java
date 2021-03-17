@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		if(!ss.get("user").getAttribute("id").equals(id))throw new SQLException("         로그인한 Id가 아닙니다. 다시 시도해주세요.");
 		if(!ss.get("user").getAttribute("password").equals(password))throw new SQLException("               비밀번호 오류. 다시 시도해주세요");
 		int result = userDAO.deleteMyInform(id, password);
-		if(result!=0)throw new SQLException("        입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
+		if(result==0)throw new SQLException("        입력하신 정보에 일치하는 회원정보가 없습니다. 다시 한번 확인해주세요.");
 	}
 
 }
